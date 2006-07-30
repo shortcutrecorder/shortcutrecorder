@@ -1,0 +1,33 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                allowedModifiersChanged = id; 
+                requiredModifiersChanged = id; 
+                toggleGlobalHotKey = id; 
+            }; 
+            CLASS = AppController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                allowedModifiersCommandCheckBox = NSButton; 
+                allowedModifiersControlCheckBox = NSButton; 
+                allowedModifiersOptionCheckBox = NSButton; 
+                allowedModifiersShiftCheckBox = NSButton; 
+                delegateDisallowReasonField = NSTextField; 
+                delegateDisallowRecorder = SRRecorderControl; 
+                globalHotKeyCheckBox = NSButton; 
+                globalHotKeyLogView = NSTextView; 
+                mainWindow = NSWindow; 
+                requiredModifiersCommandCheckBox = NSButton; 
+                requiredModifiersControlCheckBox = NSButton; 
+                requiredModifiersOptionCheckBox = NSButton; 
+                requiredModifiersShiftCheckBox = NSButton; 
+                shortcutRecorder = SRRecorderControl; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }
+    ); 
+    IBVersion = 1; 
+}
