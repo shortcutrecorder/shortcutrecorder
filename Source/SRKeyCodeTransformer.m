@@ -71,7 +71,6 @@ static NSArray              *padKeysArray        = nil;
 		SRChar(KeyboardReturnGlyph), SRInt(76),
 		SRChar(KeyboardTabRightGlyph), SRInt(48),
 		SRChar(KeyboardHelpGlyph), SRInt(114),
-		// SRChar(KeyboardUpArrowheadGlyph), SRInt(10), can't map this because this key is keyboard layout dependent, damn
 		nil];    
     
     // We want to identify if the key was pressed on the numpad
@@ -152,6 +151,9 @@ static NSArray              *padKeysArray        = nil;
 		if ( err != noErr ) return nil;
 		
 		UInt32 charCode = KeyTranslate( kchrHandle, keyCode, &keysDown );
+		
+		if (keysDown != 0) charCode = KeyTranslate( kchrHandle, keyCode, &keysDown );
+		
         char theChar = ( charCode & 0x00FF );
 		
 		NSString *keyString = [[[[NSString alloc] initWithData:[NSData dataWithBytes:&theChar length:1] encoding:NSMacOSRomanStringEncoding] autorelease] uppercaseString];
