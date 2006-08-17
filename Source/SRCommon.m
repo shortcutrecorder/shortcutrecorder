@@ -114,10 +114,11 @@ unsigned int SRCarbonToCocoaFlags( unsigned int carbonFlags )
 {
 	unsigned int cocoaFlags = ShortcutRecorderEmptyFlags;
 	
-	if (carbonFlags & cmdKey) cocoaFlags += NSCommandKeyMask;
-	if (carbonFlags & optionKey) cocoaFlags += NSAlternateKeyMask;
-	if (carbonFlags & controlKey) cocoaFlags += NSControlKeyMask;
-	if (carbonFlags & shiftKey) cocoaFlags += NSShiftKeyMask;
+	if (carbonFlags & cmdKey) cocoaFlags |= NSCommandKeyMask;
+	if (carbonFlags & optionKey) cocoaFlags |= NSAlternateKeyMask;
+	if (carbonFlags & controlKey) cocoaFlags |= NSControlKeyMask;
+	if (carbonFlags & shiftKey) cocoaFlags |= NSShiftKeyMask;
+	if (carbonFlags & NSFunctionKeyMask) cocoaFlags += NSFunctionKeyMask;
 	
 	return cocoaFlags;
 }
@@ -129,10 +130,11 @@ unsigned int SRCocoaToCarbonFlags( unsigned int cocoaFlags )
 {
 	unsigned int carbonFlags = ShortcutRecorderEmptyFlags;
 	
-	if (cocoaFlags & NSCommandKeyMask) carbonFlags += cmdKey;
-	if (cocoaFlags & NSAlternateKeyMask) carbonFlags += optionKey;
-	if (cocoaFlags & NSControlKeyMask) carbonFlags += controlKey;
-	if (cocoaFlags & NSShiftKeyMask) carbonFlags += shiftKey;
+	if (cocoaFlags & NSCommandKeyMask) carbonFlags |= cmdKey;
+	if (cocoaFlags & NSAlternateKeyMask) carbonFlags |= optionKey;
+	if (cocoaFlags & NSControlKeyMask) carbonFlags |= controlKey;
+	if (cocoaFlags & NSShiftKeyMask) carbonFlags |= shiftKey;
+	if (cocoaFlags & NSFunctionKeyMask) carbonFlags |= NSFunctionKeyMask;
 	
 	return carbonFlags;
 }

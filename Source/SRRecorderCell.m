@@ -91,6 +91,8 @@
 		requiredFlags = [[aDecoder decodeObject] unsignedIntValue];
 	}
 	
+	allowedFlags |= NSFunctionKeyMask;
+
 	[self _loadKeyCombo];
 
 	return self;
@@ -240,6 +242,12 @@
 		{
 			// Display currently pressed modifier keys
 			displayString = SRStringForCocoaModifierFlags( recordingFlags );
+			
+			// Fall back on 'Type shortcut' if we don't have modifier flags to display; this will happen for the fn key depressed
+			if (![displayString length])
+			{
+				displayString = SRLoc(@"Type shortcut");
+			}
 		}
 	}
 	else
@@ -530,6 +538,16 @@
 
 		return YES;
 	}
+	else
+	{
+		//Start recording when the spacebar is pressed while the control is first responder
+		if (([[[self controlView] window] firstResponder] == [self controlView]) &&
+			([[theEvent characters] length] && [[theEvent characters] characterAtIndex:0] == 32) &&
+			([self isEnabled]))
+		{
+			[self _startRecording];
+		}
+	}
 	
 	return NO;
 }
@@ -744,7 +762,7 @@
 		
 		NSDictionary *defaultsValue = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithShort: keyCombo.code], @"keyCode",
-			[NSNumber numberWithInt: keyCombo.flags], @"modifierFlags",
+			[NSNumber numberWithUnsignedInt: keyCombo.flags], @"modifierFlags",
 			nil];
 		
 		[values setValue:defaultsValue forKey:[self _defaultsKeyForAutosaveName: defaultsKey]];
@@ -810,24 +828,27 @@
 	unsigned int a = allowedFlags;
 	unsigned int m = requiredFlags;
 
-	if (m & NSCommandKeyMask) filteredFlags += NSCommandKeyMask;
-	else if ((flags & NSCommandKeyMask) && (a & NSCommandKeyMask)) filteredFlags += NSCommandKeyMask;
+	if (m & NSCommandKeyMask) filteredFlags |= NSCommandKeyMask;
+	else if ((flags & NSCommandKeyMask) && (a & NSCommandKeyMask)) filteredFlags |= NSCommandKeyMask;
 	
-	if (m & NSAlternateKeyMask) filteredFlags += NSAlternateKeyMask;
-	else if ((flags & NSAlternateKeyMask) && (a & NSAlternateKeyMask)) filteredFlags += NSAlternateKeyMask;
+	if (m & NSAlternateKeyMask) filteredFlags |= NSAlternateKeyMask;
+	else if ((flags & NSAlternateKeyMask) && (a & NSAlternateKeyMask)) filteredFlags |= NSAlternateKeyMask;
 	
-	if ((m & NSControlKeyMask)) filteredFlags += NSControlKeyMask;
-	else if ((flags & NSControlKeyMask) && (a & NSControlKeyMask)) filteredFlags += NSControlKeyMask;
+	if ((m & NSControlKeyMask)) filteredFlags |= NSControlKeyMask;
+	else if ((flags & NSControlKeyMask) && (a & NSControlKeyMask)) filteredFlags |= NSControlKeyMask;
 	
-	if ((m & NSShiftKeyMask)) filteredFlags += NSShiftKeyMask;
-	else if ((flags & NSShiftKeyMask) && (a & NSShiftKeyMask)) filteredFlags += NSShiftKeyMask;
+	if ((m & NSShiftKeyMask)) filteredFlags |= NSShiftKeyMask;
+	else if ((flags & NSShiftKeyMask) && (a & NSShiftKeyMask)) filteredFlags |= NSShiftKeyMask;
+	
+	if ((m & NSFunctionKeyMask)) filteredFlags |= NSFunctionKeyMask;
+	else if ((flags & NSFunctionKeyMask) && (a & NSFunctionKeyMask)) filteredFlags |= NSFunctionKeyMask;
 	
 	return filteredFlags;
 }
 
 - (BOOL)_validModifierFlags:(unsigned int)flags
 {
-	return ((flags & NSCommandKeyMask) || (flags & NSAlternateKeyMask) || (flags & NSControlKeyMask) || (flags & NSShiftKeyMask)) ? YES : NO;	
+	return ((flags & NSCommandKeyMask) || (flags & NSAlternateKeyMask) || (flags & NSControlKeyMask) || (flags & NSShiftKeyMask) || (flags & NSFunctionKeyMask)) ? YES : NO;	
 }
 
 #pragma mark -
@@ -837,10 +858,13 @@
 	unsigned int carbonFlags = ShortcutRecorderEmptyFlags;
 	unsigned filteredFlags = [self _filteredCocoaFlags: cocoaFlags];
 	
-	if (filteredFlags & NSCommandKeyMask) carbonFlags += cmdKey;
-	if (filteredFlags & NSAlternateKeyMask) carbonFlags += optionKey;
-	if (filteredFlags & NSControlKeyMask) carbonFlags += controlKey;
-	if (filteredFlags & NSShiftKeyMask) carbonFlags += shiftKey;
+	if (filteredFlags & NSCommandKeyMask) carbonFlags |= cmdKey;
+	if (filteredFlags & NSAlternateKeyMask) carbonFlags |= optionKey;
+	if (filteredFlags & NSControlKeyMask) carbonFlags |= controlKey;
+	if (filteredFlags & NSShiftKeyMask) carbonFlags |= shiftKey;
+	
+	// I couldn't find out the equivalent constant in Carbon, but apparently it must use the same one as Cocoa. -AK
+	if (filteredFlags & NSFunctionKeyMask) carbonFlags |= NSFunctionKeyMask;
 	
 	return carbonFlags;
 }

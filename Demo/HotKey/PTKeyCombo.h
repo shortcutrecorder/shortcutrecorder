@@ -11,12 +11,12 @@
 @interface PTKeyCombo : NSObject <NSCopying>
 {
 	int	mKeyCode;
-	int	mModifiers;
+	unsigned int	mModifiers;
 }
 
 + (id)clearKeyCombo;
-+ (id)keyComboWithKeyCode: (int)keyCode modifiers: (int)modifiers;
-- (id)initWithKeyCode: (int)keyCode modifiers: (int)modifiers;
++ (id)keyComboWithKeyCode: (int)keyCode modifiers: (unsigned int)modifiers;
+- (id)initWithKeyCode: (int)keyCode modifiers: (unsigned int)modifiers;
 
 - (id)initWithPlistRepresentation: (id)plist;
 - (id)plistRepresentation;
@@ -24,7 +24,7 @@
 - (BOOL)isEqual: (PTKeyCombo*)combo;
 
 - (int)keyCode;
-- (int)modifiers;
+- (unsigned int)modifiers;
 
 - (BOOL)isClearCombo;
 - (BOOL)isValidHotKeyCombo;
