@@ -12,7 +12,7 @@
 		0B5E281E09C1D6C500444687 /* SRRemoveShortcut.tif in Resources */ = {isa = PBXBuildFile; fileRef = 0B5E281809C1D6C500444687 /* SRRemoveShortcut.tif */; };
 		0B5E282009C1D6C500444687 /* SRRemoveShortcutPressed.tif in Resources */ = {isa = PBXBuildFile; fileRef = 0B5E281A09C1D6C500444687 /* SRRemoveShortcutPressed.tif */; };
 		0B5E282209C1D6C500444687 /* SRRemoveShortcutRollover.tif in Resources */ = {isa = PBXBuildFile; fileRef = 0B5E281C09C1D6C500444687 /* SRRemoveShortcutRollover.tif */; };
-		0B68DD0909CC0BEB00596FC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B68DD0709CC0BEB00596FC0 /* Localizable.strings */; };
+		0B68DD0909CC0BEB00596FC0 /* ShortcutRecorder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B68DD0709CC0BEB00596FC0 /* ShortcutRecorder.strings */; };
 		0B6DAA3D09C329AB0022655F /* SRSnapback.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 0B6DAA3C09C329AB0022655F /* SRSnapback.tiff */; };
 		0B8E29C409CDB9360085E9ED /* CTGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29BD09CDB9360085E9ED /* CTGradient.m */; };
 		0B8E29C609CDB9360085E9ED /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29C109CDB9360085E9ED /* SRRecorderControl.m */; };
@@ -33,7 +33,7 @@
 		0B8E2A8E09CDC07A0085E9ED /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29C109CDB9360085E9ED /* SRRecorderControl.m */; };
 		0B8E2A8F09CDC07B0085E9ED /* SRRecorderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29C309CDB9360085E9ED /* SRRecorderCell.m */; };
 		0B8E2A9109CDC07D0085E9ED /* CTGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29BD09CDB9360085E9ED /* CTGradient.m */; };
-		0B8E2A9209CDC0800085E9ED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B68DD0709CC0BEB00596FC0 /* Localizable.strings */; };
+		0B8E2A9209CDC0800085E9ED /* ShortcutRecorder.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B68DD0709CC0BEB00596FC0 /* ShortcutRecorder.strings */; };
 		0B8E2AA109CDC0D90085E9ED /* InterfaceBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B8E2AA009CDC0D90085E9ED /* InterfaceBuilder.framework */; };
 		0B8E2D3009CDC1830085E9ED /* SRRemoveShortcut.tif in Resources */ = {isa = PBXBuildFile; fileRef = 0B5E281809C1D6C500444687 /* SRRemoveShortcut.tif */; };
 		0B8E2D3109CDC1840085E9ED /* SRRemoveShortcutPressed.tif in Resources */ = {isa = PBXBuildFile; fileRef = 0B5E281A09C1D6C500444687 /* SRRemoveShortcutPressed.tif */; };
@@ -60,10 +60,10 @@
 		0B5E281809C1D6C500444687 /* SRRemoveShortcut.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcut.tif; sourceTree = "<group>"; };
 		0B5E281A09C1D6C500444687 /* SRRemoveShortcutPressed.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutPressed.tif; sourceTree = "<group>"; };
 		0B5E281C09C1D6C500444687 /* SRRemoveShortcutRollover.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRRemoveShortcutRollover.tif; sourceTree = "<group>"; };
-		0B68DD0809CC0BEB00596FC0 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0B68DD0809CC0BEB00596FC0 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		0B6DAA3C09C329AB0022655F /* SRSnapback.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SRSnapback.tiff; sourceTree = "<group>"; };
-		0B8216800A62B67D00E12BE3 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = Dutch.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0B889A0A09CEC8BB0011F12B /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0B8216800A62B67D00E12BE3 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = Dutch.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		0B889A0A09CEC8BB0011F12B /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		0B8E29BC09CDB9360085E9ED /* CTGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTGradient.h; sourceTree = "<group>"; };
 		0B8E29BD09CDB9360085E9ED /* CTGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTGradient.m; sourceTree = "<group>"; };
 		0B8E29C009CDB9360085E9ED /* SRRecorderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRecorderControl.h; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		0B8E2A4B09CDBBF80085E9ED /* ShortcutRecorder.ibclassdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = ShortcutRecorder.ibclassdescription; path = Palette/ShortcutRecorder.ibclassdescription; sourceTree = "<group>"; };
 		0B8E2A8909CDC06E0085E9ED /* ShortcutRecorder.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = ShortcutRecorder.tiff; path = Palette/ShortcutRecorder.tiff; sourceTree = "<group>"; };
 		0B8E2AA009CDC0D90085E9ED /* InterfaceBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterfaceBuilder.framework; path = /System/Library/Frameworks/InterfaceBuilder.framework; sourceTree = "<absolute>"; };
-		0BA347AB09E84C7A008B4374 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0BA347AB09E84C7A008B4374 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		0BBDDE770A38830300BE2EB8 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = Palette/English.lproj/SRRecorderInspector.nib; sourceTree = "<group>"; };
 		0BBDDE7A0A38830600BE2EB8 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = Palette/English.lproj/SRRecorderPalette.nib; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -282,7 +282,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0B68DD0709CC0BEB00596FC0 /* Localizable.strings */,
+				0B68DD0709CC0BEB00596FC0 /* ShortcutRecorder.strings */,
 				0B5E281709C1D6C500444687 /* Images */,
 				0B8E2A1409CDBAFE0085E9ED /* Demo */,
 				0B8E2A2709CDBB470085E9ED /* Palette */,
@@ -370,7 +370,7 @@
 				0B8E2A4A09CDBBEB0085E9ED /* palette.table in Resources */,
 				0B8E2A4C09CDBBF80085E9ED /* ShortcutRecorder.ibclassdescription in Resources */,
 				0B8E2A8A09CDC06E0085E9ED /* ShortcutRecorder.tiff in Resources */,
-				0B8E2A9209CDC0800085E9ED /* Localizable.strings in Resources */,
+				0B8E2A9209CDC0800085E9ED /* ShortcutRecorder.strings in Resources */,
 				0B8E2D3009CDC1830085E9ED /* SRRemoveShortcut.tif in Resources */,
 				0B8E2D3109CDC1840085E9ED /* SRRemoveShortcutPressed.tif in Resources */,
 				0B8E2D3209CDC1840085E9ED /* SRRemoveShortcutRollover.tif in Resources */,
@@ -390,7 +390,7 @@
 				0B5E282009C1D6C500444687 /* SRRemoveShortcutPressed.tif in Resources */,
 				0B5E282209C1D6C500444687 /* SRRemoveShortcutRollover.tif in Resources */,
 				0B6DAA3D09C329AB0022655F /* SRSnapback.tiff in Resources */,
-				0B68DD0909CC0BEB00596FC0 /* Localizable.strings in Resources */,
+				0B68DD0909CC0BEB00596FC0 /* ShortcutRecorder.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,7 +441,7 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		0B68DD0709CC0BEB00596FC0 /* Localizable.strings */ = {
+		0B68DD0709CC0BEB00596FC0 /* ShortcutRecorder.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0B68DD0809CC0BEB00596FC0 /* English */,
@@ -449,7 +449,7 @@
 				0BA347AB09E84C7A008B4374 /* sv */,
 				0B8216800A62B67D00E12BE3 /* Dutch */,
 			);
-			name = Localizable.strings;
+			name = ShortcutRecorder.strings;
 			sourceTree = "<group>";
 		};
 		0B8E2A1E09CDBB440085E9ED /* InfoPlist.strings */ = {
