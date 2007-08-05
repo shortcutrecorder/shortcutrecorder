@@ -16,6 +16,8 @@
                 allowedModifiersControlCheckBox = NSButton; 
                 allowedModifiersOptionCheckBox = NSButton; 
                 allowedModifiersShiftCheckBox = NSButton; 
+                allowsBareKeysPopUp = NSPopUpButton; 
+                animatesButton = NSButton; 
                 autoSaveNameTextField = NSTextField; 
                 enabledButton = NSButton; 
                 hiddenButton = NSButton; 
@@ -24,6 +26,7 @@
                 requiredModifiersControlCheckBox = NSButton; 
                 requiredModifiersOptionCheckBox = NSButton; 
                 requiredModifiersShiftCheckBox = NSButton; 
+                stylePopUp = NSPopUpButton; 
             }; 
             SUPERCLASS = IBInspector; 
         }

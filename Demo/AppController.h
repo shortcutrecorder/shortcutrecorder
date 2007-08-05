@@ -2,7 +2,7 @@
 //  AppController.h
 //  ShortcutRecorder
 //
-//  Copyright 2006 Contributors. All rights reserved.
+//  Copyright 2006-2007 Contributors. All rights reserved.
 //
 //  License: BSD
 //
@@ -30,6 +30,9 @@
 	IBOutlet NSButton *requiredModifiersShiftCheckBox;
 	IBOutlet NSButton *requiredModifiersControlCheckBox;
 	
+	IBOutlet NSPopUpButton *allowsBareKeysPopUp;
+	IBOutlet NSPopUpButton *stylePopUp;
+	
 	IBOutlet SRRecorderControl *delegateDisallowRecorder;
 	
 	IBOutlet NSButton *globalHotKeyCheckBox;
@@ -44,5 +47,8 @@
 - (IBAction)requiredModifiersChanged:(id)sender;
 
 - (IBAction)toggleGlobalHotKey:(id)sender;
+
+- (IBAction)changeAllowsBareKeys:(id)sender;
+- (IBAction)changeStyle:(id)sender;
 
 @end

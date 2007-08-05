@@ -2,12 +2,13 @@
 //  SRRecorderInspector.h
 //  ShortcutRecorder
 //
-//  Copyright 2006 Contributors. All rights reserved.
+//  Copyright 2006-2007 Contributors. All rights reserved.
 //
 //  License: BSD
 //
 //  Contributors:
 //      David Dauer
+//      Jesper
 
 #import <InterfaceBuilder/InterfaceBuilder.h>
 #import "SRRecorderControl.h"
@@ -24,10 +25,15 @@
 	IBOutlet NSButton *requiredModifiersShiftCheckBox;
 	IBOutlet NSButton *requiredModifiersControlCheckBox;
 
+	IBOutlet NSPopUpButton *allowsBareKeysPopUp;
+
+	IBOutlet NSPopUpButton *stylePopUp;
+	
 	IBOutlet NSTextField *autoSaveNameTextField;
 	IBOutlet SRRecorderControl *initialShortcutRecorder;
 	
 	IBOutlet NSButton *enabledButton;
 	IBOutlet NSButton *hiddenButton;
+	IBOutlet NSButton *animatesButton;
 }
 @end

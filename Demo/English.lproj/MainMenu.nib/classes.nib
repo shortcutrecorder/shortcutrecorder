@@ -3,6 +3,8 @@
         {
             ACTIONS = {
                 allowedModifiersChanged = id; 
+                changeAllowsBareKeys = id; 
+                changeStyle = id; 
                 requiredModifiersChanged = id; 
                 toggleGlobalHotKey = id; 
             }; 
@@ -13,6 +15,7 @@
                 allowedModifiersControlCheckBox = NSButton; 
                 allowedModifiersOptionCheckBox = NSButton; 
                 allowedModifiersShiftCheckBox = NSButton; 
+                allowsBareKeysPopUp = NSPopUpButton; 
                 delegateDisallowReasonField = NSTextField; 
                 delegateDisallowRecorder = SRRecorderControl; 
                 globalHotKeyCheckBox = NSButton; 
@@ -23,6 +26,7 @@
                 requiredModifiersOptionCheckBox = NSButton; 
                 requiredModifiersShiftCheckBox = NSButton; 
                 shortcutRecorder = SRRecorderControl; 
+                stylePopUp = NSPopUpButton; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

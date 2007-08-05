@@ -2,7 +2,7 @@
 //  SRCommon.m
 //  ShortcutRecorder
 //
-//  Copyright 2006 Contributors. All rights reserved.
+//  Copyright 2006-2007 Contributors. All rights reserved.
 //
 //  License: BSD
 //
@@ -139,6 +139,17 @@ unsigned int SRCocoaToCarbonFlags( unsigned int cocoaFlags )
 	return carbonFlags;
 }
 
+#pragma mark Animation Easing
+
+// From: http://developer.apple.com/samplecode/AnimatedSlider/ as "easeFunction"
+double SRAnimationEaseInOut(double t) {
+	// This function implements a sinusoidal ease-in/ease-out for t = 0 to 1.0.  T is scaled to represent the interval of one full period of the sine function, and transposed to lie above the X axis.
+	double x = ((sin((t * M_PI) - M_PI_2) + 1.0 ) / 2.0);
+//	NSLog(@"SRAnimationEaseInOut: %f. a: %f, b: %f, c: %f, d: %f, e: %f", t, (t * M_PI), ((t * M_PI) - M_PI_2), sin((t * M_PI) - M_PI_2), (sin((t * M_PI) - M_PI_2) + 1.0), x);
+	return x;
+} 
+
+
 #pragma mark -
 #pragma mark additions
 
@@ -166,7 +177,7 @@ unsigned int SRCocoaToCarbonFlags( unsigned int cocoaFlags )
 
 - (NSString *)localizedDescription
 {
-	return [[self userInfo] objectForKey:@"NSLocalizedDescriptionKey"];
+	return [[self userInfo] objectForKey:@"NSLocalizedDescription"];
 }
 
 - (NSString *)localizedFailureReason
@@ -201,4 +212,166 @@ unsigned int SRCocoaToCarbonFlags( unsigned int cocoaFlags )
 			informativeTextWithFormat:(reason ? reason : @"")];
 }
 
+@end
+
+static NSMutableDictionary *SRSharedImageCache = nil;
+
+@interface SRSharedImageProvider (Private)
++ (void)_drawSRSnapback:(id)anNSCustomImageRep;
++ (NSValue *)_sizeSRSnapback;
++ (void)_drawSRRemoveShortcut:(id)anNSCustomImageRep;
++ (NSValue *)_sizeSRRemoveShortcut;
++ (void)_drawSRRemoveShortcutRollover:(id)anNSCustomImageRep;
++ (NSValue *)_sizeSRRemoveShortcutRollover;
++ (void)_drawSRRemoveShortcutPressed:(id)anNSCustomImageRep;
++ (NSValue *)_sizeSRRemoveShortcutPressed;
+
++ (void)_drawARemoveShortcutBoxUsingRep:(id)anNSCustomImageRep opacity:(double)opacity;
+@end
+
+@implementation SRSharedImageProvider
++ (NSImage *)supportingImageWithName:(NSString *)name {
+//	NSLog(@"supportingImageWithName: %@", name);
+	if (nil == SRSharedImageCache) {
+		SRSharedImageCache = [[NSMutableDictionary dictionary] retain];
+//		NSLog(@"inited cache");
+	}
+	NSImage *cachedImage = nil;
+	if (nil != (cachedImage = [SRSharedImageCache objectForKey:name])) {
+//		NSLog(@"returned cached image: %@", cachedImage);
+		return cachedImage;
+	}
+	
+//	NSLog(@"constructing image");
+	NSSize size;
+	NSValue *sizeValue = [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"_size%@", name])];
+	size = [sizeValue sizeValue];
+//	NSLog(@"size: %@", NSStringFromSize(size));
+	
+	NSCustomImageRep *customImageRep = [[NSCustomImageRep alloc] initWithDrawSelector:NSSelectorFromString([NSString stringWithFormat:@"_draw%@:", name]) delegate:self];
+	[customImageRep setSize:size];
+//	NSLog(@"created customImageRep: %@", customImageRep);
+	NSImage *returnImage = [[NSImage alloc] initWithSize:size];
+	[returnImage addRepresentation:customImageRep];
+	[returnImage setScalesWhenResized:YES];
+	[SRSharedImageCache setObject:returnImage forKey:name];
+	
+#ifdef SRCommonWriteDebugImagery
+	
+	NSData *tiff = [returnImage TIFFRepresentation];
+	[tiff writeToURL:[NSURL fileURLWithPath:[[NSString stringWithFormat:@"~/Desktop/m_%@.tiff", name] stringByExpandingTildeInPath]] atomically:YES];
+
+	NSSize sizeQDRPL = NSMakeSize(size.width*4.0,size.height*4.0);
+	
+//	sizeQDRPL = NSMakeSize(70.0,70.0);
+	NSCustomImageRep *customImageRepQDRPL = [[NSCustomImageRep alloc] initWithDrawSelector:NSSelectorFromString([NSString stringWithFormat:@"_draw%@:", name]) delegate:self];
+	[customImageRepQDRPL setSize:sizeQDRPL];
+//	NSLog(@"created customImageRepQDRPL: %@", customImageRepQDRPL);
+	NSImage *returnImageQDRPL = [[NSImage alloc] initWithSize:sizeQDRPL];
+	[returnImageQDRPL addRepresentation:customImageRepQDRPL];
+	[returnImageQDRPL setScalesWhenResized:YES];
+	[returnImageQDRPL setFlipped:YES];
+	NSData *tiffQDRPL = [returnImageQDRPL TIFFRepresentation];
+	[tiffQDRPL writeToURL:[NSURL fileURLWithPath:[[NSString stringWithFormat:@"~/Desktop/m_QDRPL_%@.tiff", name] stringByExpandingTildeInPath]] atomically:YES];
+	
+#endif
+	
+//	NSLog(@"returned image: %@", returnImage);
+	return [returnImage autorelease];
+}
+@end
+
+@implementation SRSharedImageProvider (Private)
+
+#define MakeRelativePoint(x,y)	NSMakePoint(x*hScale, y*vScale)
+
++ (NSValue *)_sizeSRSnapback {
+	return [NSValue valueWithSize:NSMakeSize(14.0,14.0)];
+}
++ (void)_drawSRSnapback:(id)anNSCustomImageRep {
+	
+//	NSLog(@"drawSRSnapback using: %@", anNSCustomImageRep);
+	
+	NSCustomImageRep *rep = anNSCustomImageRep;
+	NSSize size = [rep size];
+	[[NSColor whiteColor] setFill];
+	double hScale = (size.width/1.0);
+	double vScale = (size.height/1.0);
+	
+	NSBezierPath *bp = [[NSBezierPath alloc] init];
+	[bp setLineWidth:hScale];
+	
+	[bp moveToPoint:MakeRelativePoint(0.0489685, 0.6181513)];
+	[bp lineToPoint:MakeRelativePoint(0.4085750, 0.9469318)];
+	[bp lineToPoint:MakeRelativePoint(0.4085750, 0.7226146)];
+	[bp curveToPoint:MakeRelativePoint(0.8508247, 0.4836237) controlPoint1:MakeRelativePoint(0.4085750, 0.7226146) controlPoint2:MakeRelativePoint(0.8371143, 0.7491841)];
+	[bp curveToPoint:MakeRelativePoint(0.5507195, 0.0530682) controlPoint1:MakeRelativePoint(0.8677834, 0.1545071) controlPoint2:MakeRelativePoint(0.5507195, 0.0530682)];
+	[bp curveToPoint:MakeRelativePoint(0.7421721, 0.3391942) controlPoint1:MakeRelativePoint(0.5507195, 0.0530682) controlPoint2:MakeRelativePoint(0.7458685, 0.1913146)];
+	[bp curveToPoint:MakeRelativePoint(0.4085750, 0.5154130) controlPoint1:MakeRelativePoint(0.7383412, 0.4930328) controlPoint2:MakeRelativePoint(0.4085750, 0.5154130)];
+	[bp lineToPoint:MakeRelativePoint(0.4085750, 0.2654000)];
+	
+	NSAffineTransform *flip = [[NSAffineTransform alloc] init];
+//	[flip translateXBy:0.95 yBy:-1.0];
+	[flip scaleXBy:0.9 yBy:1.0];
+	[flip translateXBy:0.5 yBy:-0.5];
+	
+	[bp transformUsingAffineTransform:flip];
+	
+	NSShadow *sh = [[NSShadow alloc] init];
+	[sh setShadowColor:[[NSColor blackColor] colorWithAlphaComponent:0.45]];
+	[sh setShadowBlurRadius:1.0];
+	[sh setShadowOffset:NSMakeSize(0.0,-1.0)];
+	[sh set];
+	
+	[bp fill];
+	
+}
+
++ (NSValue *)_sizeSRRemoveShortcut {
+	return [NSValue valueWithSize:NSMakeSize(14.0,14.0)];
+}
++ (NSValue *)_sizeSRRemoveShortcutRollover { return [self _sizeSRRemoveShortcut]; }
++ (NSValue *)_sizeSRRemoveShortcutPressed { return [self _sizeSRRemoveShortcut]; }
++ (void)_drawARemoveShortcutBoxUsingRep:(id)anNSCustomImageRep opacity:(double)opacity {
+	
+//	NSLog(@"drawARemoveShortcutBoxUsingRep: %@ opacity: %f", anNSCustomImageRep, opacity);
+	
+	NSCustomImageRep *rep = anNSCustomImageRep;
+	NSSize size = [rep size];
+	[[NSColor colorWithCalibratedWhite:0.0 alpha:1-opacity] setFill];
+	double hScale = (size.width/14.0);
+	double vScale = (size.height/14.0);
+	
+	[[NSBezierPath bezierPathWithOvalInRect:NSMakeRect(0.0,0.0,size.width,size.height)] fill];
+	
+	[[NSColor whiteColor] setStroke];
+	
+	NSBezierPath *cross = [[NSBezierPath alloc] init];
+	[cross setLineWidth:hScale*1.2];
+	
+	[cross moveToPoint:MakeRelativePoint(4,4)];
+	[cross lineToPoint:MakeRelativePoint(10,10)];
+	[cross moveToPoint:MakeRelativePoint(10,4)];
+	[cross lineToPoint:MakeRelativePoint(4,10)];
+		
+	[cross stroke];
+}
++ (void)_drawSRRemoveShortcut:(id)anNSCustomImageRep {
+	
+//	NSLog(@"drawSRRemoveShortcut using: %@", anNSCustomImageRep);
+	
+	[self _drawARemoveShortcutBoxUsingRep:anNSCustomImageRep opacity:0.75];
+}
++ (void)_drawSRRemoveShortcutRollover:(id)anNSCustomImageRep {
+	
+//	NSLog(@"drawSRRemoveShortcutRollover using: %@", anNSCustomImageRep);
+	
+	[self _drawARemoveShortcutBoxUsingRep:anNSCustomImageRep opacity:0.65];	
+}
++ (void)_drawSRRemoveShortcutPressed:(id)anNSCustomImageRep {
+	
+//	NSLog(@"drawSRRemoveShortcutPressed using: %@", anNSCustomImageRep);
+	
+	[self _drawARemoveShortcutBoxUsingRep:anNSCustomImageRep opacity:0.55];
+}
 @end

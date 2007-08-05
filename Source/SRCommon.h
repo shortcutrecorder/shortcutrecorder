@@ -2,7 +2,7 @@
 //  SRCommon.h
 //  ShortcutRecorder
 //
-//  Copyright 2006 Contributors. All rights reserved.
+//  Copyright 2006-2007 Contributors. All rights reserved.
 //
 //  License: BSD
 //
@@ -65,7 +65,11 @@ enum {
 #define SRLocalizedString(key, comment) NSLocalizedStringFromTableInBundle(key, @"ShortcutRecorder", [NSBundle bundleForClass: [SRDummyClass class]], comment)
 
 // Image macros, for use in any bundle
-#define SRImage(name) [[[NSImage alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForImageResource: name]] autorelease]
+//#define SRImage(name) [[[NSImage alloc] initWithContentsOfFile: [[NSBundle bundleForClass: [self class]] pathForImageResource: name]] autorelease]
+#define SRResIndImage(name) [SRSharedImageProvider supportingImageWithName:name]
+#define SRImage(name) SRResIndImage(name)
+
+//#define SRCommonWriteDebugImagery
 
 // Macros for glyps
 #define SRInt(x) [NSNumber numberWithInt: x]
@@ -93,6 +97,7 @@ NSString * SRReadableStringForCarbonModifierFlagsAndKeyCode( unsigned int flags,
 NSString * SRReadableStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
 unsigned int SRCarbonToCocoaFlags( unsigned int carbonFlags );
 unsigned int SRCocoaToCarbonFlags( unsigned int cocoaFlags );
+double SRAnimationEaseInOut(double t);
 
 #pragma mark -
 #pragma mark inlines
@@ -126,4 +131,8 @@ FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(signed short code, unsigned int
 
 @interface NSAlert( SRAdditions )
 + (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
+@end
+
+@interface SRSharedImageProvider : NSObject
++ (NSImage *)supportingImageWithName:(NSString *)name;
 @end

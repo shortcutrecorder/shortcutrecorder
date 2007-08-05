@@ -2,7 +2,7 @@
 //  SRRecorderControl.m
 //  ShortcutRecorder
 //
-//  Copyright 2006 Contributors. All rights reserved.
+//  Copyright 2006-2007 Contributors. All rights reserved.
 //
 //  License: BSD
 //
@@ -88,11 +88,29 @@
 - (BOOL) resignFirstResponder 
 {
     BOOL okToChange = [SRCell resignFirstResponder];
-    if (okToChange ) [super setKeyboardFocusRingNeedsDisplayInRect:[self bounds]];
+    if (okToChange) [super setKeyboardFocusRingNeedsDisplayInRect:[self bounds]];
     return okToChange;
 }
 
+#pragma mark *** Aesthetics ***
+- (BOOL)animates {
+	return [SRCell animates];
+}
+
+- (void)setAnimates:(BOOL)an {
+	[SRCell setAnimates:an];
+}
+
+- (SRRecorderStyle)style {
+	return [SRCell style];
+}
+
+- (void)setStyle:(SRRecorderStyle)nStyle {
+	[SRCell setStyle:nStyle];
+}
+
 #pragma mark *** Interface Stuff ***
+
 
 // If the control is set to be resizeable in width, this will make sure that the tracking rects are always updated
 - (void)viewDidMoveToWindow
@@ -133,8 +151,12 @@
 
 // Like most NSControls, pass things on to the cell
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent
-{	
-	if ([SRCell performKeyEquivalent:theEvent]) return YES;
+{
+	// Only if we're key, please. Otherwise hitting Space after having
+	// tabbed past SRRecorderControl will put you into recording mode.
+	if (([[[self window] firstResponder] isEqualTo:self])) { 
+		if ([SRCell performKeyEquivalent:theEvent]) return YES;
+	}
 
 	return [super performKeyEquivalent: theEvent];
 }
@@ -162,6 +184,18 @@
 - (void)setAllowedFlags:(unsigned int)flags
 {
 	[SRCell setAllowedFlags: flags];
+}
+
+- (BOOL)allowsKeyOnly {
+	return [SRCell allowsKeyOnly];
+}
+
+- (void)setAllowsKeyOnly:(BOOL)nAllowsKeyOnly escapeKeysRecord:(BOOL)nEscapeKeysRecord {
+	[SRCell setAllowsKeyOnly:nAllowsKeyOnly escapeKeysRecord:nEscapeKeysRecord];
+}
+
+- (BOOL)escapeKeysRecord {
+	return [SRCell escapeKeysRecord];
 }
 
 - (unsigned int)requiredFlags

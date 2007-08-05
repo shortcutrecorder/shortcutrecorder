@@ -2,14 +2,16 @@
 //  SRRecorderInspector.h
 //  ShortcutRecorder
 //
-//  Copyright 2006 Contributors. All rights reserved.
+//  Copyright 2006-2007 Contributors. All rights reserved.
 //
 //  License: BSD
 //
 //  Contributors:
 //      David Dauer
+//      Jesper
 
 #import "SRRecorderInspector.h"
+#import "SRRecorderCell.h"
 #import "SRRecorderControl.h"
 
 @implementation SRRecorderInspector
@@ -51,11 +53,30 @@
 	// Set autosave name
 	[recorder setAutosaveName: [autoSaveNameTextField stringValue]];
 	
+	BOOL allowsKeyOnly = NO; BOOL escapeKeysRecord = NO;
+	int allowsTag = [allowsBareKeysPopUp selectedTag];
+	if (allowsTag > 0)
+		allowsKeyOnly = YES;
+	if (allowsTag > 1)
+		escapeKeysRecord = YES;
+	
+	[recorder setAllowsKeyOnly:allowsKeyOnly escapeKeysRecord:escapeKeysRecord];
+	[initialShortcutRecorder setAllowsKeyOnly:allowsKeyOnly escapeKeysRecord:escapeKeysRecord];
+	
+	int style = [stylePopUp selectedTag];
+	BOOL supportsAnimates = [SRRecorderCell styleSupportsAnimation:(SRRecorderStyle)style];
+	[animatesButton setEnabled:supportsAnimates];
+	if ([animatesButton state] && !supportsAnimates) {
+		[animatesButton setState:NSOffState];
+	}
+	[recorder setStyle:(SRRecorderStyle)style];
+	
 	// Set initial combo
 	[recorder setKeyCombo: [initialShortcutRecorder keyCombo]];
 	
 	[recorder setEnabled: [enabledButton state]];
 	[recorder setHidden: [hiddenButton state]];
+	[recorder setAnimates: [animatesButton state]];
 	
     [super ok: sender];
 }
@@ -80,12 +101,30 @@
 	// Set autosave name
 	if ([[recorder autosaveName] length]) [autoSaveNameTextField setStringValue: [recorder autosaveName]];
 	else [autoSaveNameTextField setStringValue: @""];
+	
+	BOOL allowsKeyOnly = [recorder allowsKeyOnly]; BOOL escapeKeysRecord = [recorder escapeKeysRecord];
+	int allowsTag = 0;
+	if (allowsKeyOnly && !escapeKeysRecord)
+		allowsTag = 1;
+	if (allowsKeyOnly && escapeKeysRecord)
+		allowsTag = 2;
+	
+	[allowsBareKeysPopUp selectItemWithTag:allowsTag];
+	
+	[stylePopUp selectItemWithTag:(int)[recorder style]];
+	
+	[initialShortcutRecorder setStyle:[recorder style]];
+	[initialShortcutRecorder setAllowsKeyOnly:allowsKeyOnly escapeKeysRecord:escapeKeysRecord];
+	[initialShortcutRecorder setAnimates:[recorder animates]];
+	
+	[animatesButton setEnabled:[SRRecorderCell styleSupportsAnimation:[recorder style]]];
 
 	// Set initial keycombo
 	[initialShortcutRecorder setKeyCombo: [recorder keyCombo]];
 	
 	[enabledButton setState: [recorder isEnabled]];
 	[hiddenButton setState: [recorder isHidden]];
+	[animatesButton setState: [recorder animates]];
 	
 	[super revert: sender];
 }

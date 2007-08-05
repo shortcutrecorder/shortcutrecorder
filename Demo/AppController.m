@@ -2,7 +2,7 @@
 //  AppController.m
 //  ShortcutRecorder
 //
-//  Copyright 2006 Contributors. All rights reserved.
+//  Copyright 2006-2007 Contributors. All rights reserved.
 //
 //  License: BSD
 //
@@ -66,6 +66,30 @@
 	[globalHotKey setAction: @selector(hitHotKey:)];
 	
 	[[PTHotKeyCenter sharedCenter] registerHotKey: globalHotKey];
+}
+
+- (IBAction)changeAllowsBareKeys:(id)sender {
+	BOOL allowsKeyOnly = NO; BOOL escapeKeysRecord = NO;
+	int allowsTag = [allowsBareKeysPopUp selectedTag];
+	if (allowsTag > 0)
+		allowsKeyOnly = YES;
+	if (allowsTag > 1)
+		escapeKeysRecord = YES;
+	[shortcutRecorder setAllowsKeyOnly:allowsKeyOnly escapeKeysRecord:escapeKeysRecord];
+	[delegateDisallowRecorder setAllowsKeyOnly:allowsKeyOnly escapeKeysRecord:escapeKeysRecord];
+}
+
+- (IBAction)changeStyle:(id)sender {
+	int style = [stylePopUp selectedTag];
+	BOOL animates = NO;
+	if (style == 2) {
+		style = 1;
+		animates = YES;
+	}
+	[shortcutRecorder setAnimates:animates];
+	[shortcutRecorder setStyle:(SRRecorderStyle)style];
+	[delegateDisallowRecorder setAnimates:animates];
+	[delegateDisallowRecorder setStyle:(SRRecorderStyle)style];
 }
 
 #pragma mark -
