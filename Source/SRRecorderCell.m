@@ -60,6 +60,9 @@
 - (void)dealloc
 {
     [validator release];
+	
+	[keyCharsIgnoringModifiers release];
+	[keyChars release];
     
 	[recordingGradient release];
 	[autosaveName release];
@@ -82,6 +85,12 @@
 		
 		keyCombo.code = [[aDecoder decodeObjectForKey: @"keyComboCode"] shortValue];
 		keyCombo.flags = [[aDecoder decodeObjectForKey: @"keyComboFlags"] unsignedIntValue];
+		
+		if ([aDecoder containsValueForKey:@"keyChars"]) {
+			hasKeyChars = YES;
+			keyChars = (NSString *)[aDecoder decodeObjectForKey: @"keyChars"];
+			keyCharsIgnoringModifiers = (NSString *)[aDecoder decodeObjectForKey: @"keyCharsIgnoringModifiers"];
+		}
 
 		allowedFlags = [[aDecoder decodeObjectForKey: @"allowedFlags"] unsignedIntValue];
 		requiredFlags = [[aDecoder decodeObjectForKey: @"requiredFlags"] unsignedIntValue];
@@ -119,6 +128,12 @@
 	
 		[aCoder encodeObject:[NSNumber numberWithUnsignedInt: allowedFlags] forKey:@"allowedFlags"];
 		[aCoder encodeObject:[NSNumber numberWithUnsignedInt: requiredFlags] forKey:@"requiredFlags"];
+		
+		if (hasKeyChars) {
+			[aCoder encodeObject:keyChars forKey:@"keyChars"];
+			[aCoder encodeObject:keyCharsIgnoringModifiers forKey:@"keyCharsIgnoringModifiers"];
+		}
+		
 		[aCoder encodeObject:[NSNumber numberWithBool: allowsKeyOnly] forKey:@"allowsKeyOnly"];
 		[aCoder encodeObject:[NSNumber numberWithBool: escapeKeysRecord] forKey:@"escapeKeysRecord"];
 		
@@ -807,6 +822,12 @@
 						keyCombo.flags = flags;
 						keyCombo.code = [theEvent keyCode];
 						
+						hasKeyChars = YES;
+						keyChars = [[theEvent characters] retain];
+						keyCharsIgnoringModifiers = [[theEvent charactersIgnoringModifiers] retain];
+//						NSLog(@"keychars: %@, ignoringmods: %@", keyChars, keyCharsIgnoringModifiers);
+//						NSLog(@"calculated keychars: %@, ignoring: %@", SRStringForKeyCode(keyCombo.code), SRCharacterForKeyCodeAndCocoaFlags(keyCombo.code,keyCombo.flags));
+						
 					// Notify delegate
 						if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])
 							[delegate shortcutRecorderCell:self keyComboDidChange:keyCombo];
@@ -944,6 +965,8 @@
 {
 	keyCombo = aKeyCombo;
 	keyCombo.flags = [self _filteredCocoaFlags: aKeyCombo.flags];
+	
+	hasKeyChars = NO;
 
 	// Notify delegate
 	if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])
@@ -982,6 +1005,16 @@
         SRStringForKeyCode( keyCombo.code )];
 }
 
+- (NSString *)keyChars {
+	if (!hasKeyChars) return SRStringForKeyCode(keyCombo.code);
+	return keyChars;
+}
+
+- (NSString *)keyCharsIgnoringModifiers {
+	if (!hasKeyChars) return SRCharacterForKeyCodeAndCocoaFlags(keyCombo.code,keyCombo.flags);
+	return keyCharsIgnoringModifiers;
+}
+
 @end
 
 #pragma mark -
@@ -1001,6 +1034,10 @@
 	// Create clean KeyCombo
 	keyCombo.flags = ShortcutRecorderEmptyFlags;
 	keyCombo.code = ShortcutRecorderEmptyCode;
+	
+	keyChars = nil;
+	keyCharsIgnoringModifiers = nil;
+	hasKeyChars = NO;
 	
 	// These keys will cancel the recoding mode if not pressed with any modifier
 	cancelCharacterSet = [[NSSet alloc] initWithObjects: [NSNumber numberWithInt:ShortcutRecorderEscapeKey], 
@@ -1140,6 +1177,17 @@
 			[NSNumber numberWithUnsignedInt: SRCocoaToCarbonFlags(keyCombo.flags)], @"modifiers", // carbon, for compatibility with PTKeyCombo
 			nil];
 		
+		if (hasKeyChars) {
+			
+			NSMutableDictionary *mutableDefaultsValue = [defaultsValue mutableCopy];
+			[mutableDefaultsValue setObject:keyChars forKey:@"keyChars"];
+			[mutableDefaultsValue setObject:keyCharsIgnoringModifiers forKey:@"keyCharsIgnoringModifiers"];
+			
+			defaultsValue = [mutableDefaultsValue copy];
+			[mutableDefaultsValue release];
+			
+		}
+		
 		[values setValue:defaultsValue forKey:[self _defaultsKeyForAutosaveName: defaultsKey]];
 	}
 }
@@ -1163,6 +1211,13 @@
 		
 		keyCombo.flags = [self _filteredCocoaFlags: flags];
 		keyCombo.code = keyCode;
+		
+		NSString *kc = [savedCombo valueForKey: @"keyChars"];
+		hasKeyChars = (nil != kc);
+		if (kc) {
+			keyCharsIgnoringModifiers = [[savedCombo valueForKey: @"keyCharsIgnoringModifiers"] retain];
+			keyChars = [kc retain];
+		}
 		
 		// Notify delegate
 		if (delegate != nil && [delegate respondsToSelector: @selector(shortcutRecorderCell:keyComboDidChange:)])

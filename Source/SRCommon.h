@@ -15,13 +15,12 @@
 #import <Carbon/Carbon.h>
 #import <CoreServices/CoreServices.h>
 
-#pragma mark -
-#pragma mark dummy class 
+#pragma mark Dummy class 
 
 @interface SRDummyClass : NSObject {} @end
 
 #pragma mark -
-#pragma mark typedefs
+#pragma mark Typedefs
 
 typedef struct _KeyCombo {
 	unsigned int flags; // 0 for no flags
@@ -29,7 +28,7 @@ typedef struct _KeyCombo {
 } KeyCombo;
 
 #pragma mark -
-#pragma mark enums
+#pragma mark Enums
 
 // Unicode values of some keyboard glyphs
 enum {
@@ -57,8 +56,45 @@ enum {
 	KeyboardUpArrowheadGlyph    = 0x2303,
 };
 
+// Special keys
+enum {
+	kSRKeysF1 = 122,
+	kSRKeysF2 = 120,
+	kSRKeysF3 = 99,
+	kSRKeysF4 = 118,
+	kSRKeysF5 = 96,
+	kSRKeysF6 = 97,
+	kSRKeysF7 = 98,
+	kSRKeysF8 = 100,
+	kSRKeysF9 = 101,
+	kSRKeysF10 = 109,
+	kSRKeysF11 = 103,
+	kSRKeysF12 = 111,
+	kSRKeysF13 = 105,
+	kSRKeysF14 = 107,
+	kSRKeysF15 = 113,
+	kSRKeysF16 = 106,
+	kSRKeysSpace = 49,
+	kSRKeysDeleteLeft = 51,
+	kSRKeysDeleteRight = 117,
+	kSRKeysPadClear = 71,
+	kSRKeysLeftArrow = 123,
+	kSRKeysRightArrow = 124,
+	kSRKeysUpArrow = 126,
+	kSRKeysDownArrow = 125,
+	kSRKeysSoutheastArrow = 119,
+	kSRKeysNorthwestArrow = 115,
+	kSRKeysEscape = 53,
+	kSRKeysPageDown = 121,
+	kSRKeysPageUp = 116,
+	kSRKeysReturnR2L = 36,
+	kSRKeysReturn = 76,
+	kSRKeysTabRight = 48,
+	kSRKeysHelp = 114
+};
+
 #pragma mark -
-#pragma mark macros
+#pragma mark Macros
 
 // Localization macros, for use in any bundle
 #define SRLoc(key) SRLocalizedString(key, nil)
@@ -86,8 +122,17 @@ enum {
 #define ShortcutRecorderDeleteKey 117
 
 #pragma mark -
-#pragma mark functions
+#pragma mark Getting a string of the key combination
 
+//
+// ################### +- Returns string from keyCode like NSEvent's -characters
+// #   EXPLANATORY   # | +- Returns string from keyCode like NSEvent's -charactersUsingModifiers
+// #      CHART      # | | +- Returns fully readable and localized name of modifier (if modifier given)
+// ################### | | | +- Returns glyph of modifier (if modifier given)
+// SRString...         X - - X
+// SRReadableString... X - X -
+// SRCharacter...      - X - -
+//
 NSString * SRStringForKeyCode( signed short keyCode );
 NSString * SRStringForCarbonModifierFlags( unsigned int flags );
 NSString * SRStringForCarbonModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
@@ -95,12 +140,21 @@ NSString * SRStringForCocoaModifierFlags( unsigned int flags );
 NSString * SRStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
 NSString * SRReadableStringForCarbonModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
 NSString * SRReadableStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
+NSString *SRCharacterForKeyCodeAndCarbonFlags(signed short keyCode, unsigned int carbonFlags);
+NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int cocoaFlags);
+
+#pragma mark Converting between Cocoa and Carbon modifier flags
+
 unsigned int SRCarbonToCocoaFlags( unsigned int carbonFlags );
 unsigned int SRCocoaToCarbonFlags( unsigned int cocoaFlags );
+
+#pragma mark -
+#pragma mark Animation pace function
+
 double SRAnimationEaseInOut(double t);
 
 #pragma mark -
-#pragma mark inlines
+#pragma mark Inlines
 
 FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(signed short code, unsigned int flags) {
 	KeyCombo kc;
@@ -109,8 +163,12 @@ FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(signed short code, unsigned int
 	return kc;
 }
 
+FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(signed short keyCode) {
+	return (keyCode == kSRKeysF1 || keyCode == kSRKeysF2 || keyCode == kSRKeysF3 || keyCode == kSRKeysF4 || keyCode == kSRKeysF5 || keyCode == kSRKeysF6 || keyCode == kSRKeysF7 || keyCode == kSRKeysF8 || keyCode == kSRKeysF9 || keyCode == kSRKeysF10 || keyCode == kSRKeysF11 || keyCode == kSRKeysF12 || keyCode == kSRKeysF13 || keyCode == kSRKeysF14 || keyCode == kSRKeysF15 || keyCode == kSRKeysF16 || keyCode == kSRKeysSpace || keyCode == kSRKeysDeleteLeft || keyCode == kSRKeysDeleteRight || keyCode == kSRKeysPadClear || keyCode == kSRKeysLeftArrow || keyCode == kSRKeysRightArrow || keyCode == kSRKeysUpArrow || keyCode == kSRKeysDownArrow || keyCode == kSRKeysSoutheastArrow || keyCode == kSRKeysNorthwestArrow || keyCode == kSRKeysEscape || keyCode == kSRKeysPageDown || keyCode == kSRKeysPageUp || keyCode == kSRKeysReturnR2L || keyCode == kSRKeysReturn || keyCode == kSRKeysTabRight || keyCode == kSRKeysHelp);
+}
+
 #pragma mark -
-#pragma mark additions
+#pragma mark Additions
 
 //
 // This segment is a category on NSBezierPath to supply roundrects. It's a common thing if you're drawing,
@@ -132,6 +190,9 @@ FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(signed short code, unsigned int
 @interface NSAlert( SRAdditions )
 + (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
 @end
+
+#pragma mark -
+#pragma mark Image provider
 
 @interface SRSharedImageProvider : NSObject
 + (NSImage *)supportingImageWithName:(NSString *)name;

@@ -14,6 +14,14 @@
 #import "SRCommon.h"
 #import "SRKeyCodeTransformer.h"
 
+//#define SRCommon_PotentiallyUsefulDebugInfo
+
+#ifdef	SRCommon_PotentiallyUsefulDebugInfo
+#define PUDNSLog(X,...)	NSLog(X,##__VA_ARGS__)
+#else
+#define PUDNSLog(X,...)	{ ; }
+#endif
+
 #pragma mark -
 #pragma mark dummy class 
 
@@ -137,6 +145,112 @@ unsigned int SRCocoaToCarbonFlags( unsigned int cocoaFlags )
 	if (cocoaFlags & NSFunctionKeyMask) carbonFlags |= NSFunctionKeyMask;
 	
 	return carbonFlags;
+}
+
+//---------------------------------------------------------- 
+// SRCharacterForKeyCodeAndCarbonFlags()
+//----------------------------------------------------------
+NSString *SRCharacterForKeyCodeAndCarbonFlags(signed short keyCode, unsigned int carbonFlags) {
+	return SRCharacterForKeyCodeAndCocoaFlags(keyCode, SRCarbonToCocoaFlags(carbonFlags));
+}
+
+//---------------------------------------------------------- 
+// SRCharacterForKeyCodeAndCocoaFlags()
+//----------------------------------------------------------
+NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int cocoaFlags) {
+	
+	PUDNSLog(@"SRCharacterForKeyCodeAndCocoaFlags, keyCode: %hi, cocoaFlags: %u",
+			 keyCode, cocoaFlags);
+	
+	// Fall back to string based on key code:
+#define	FailWithNaiveString SRStringForKeyCode(keyCode)
+	
+	UCKeyboardLayout        *uchrData;
+	void                *KCHRData;
+	SInt32              keyLayoutKind;
+    KeyboardLayoutRef currentLayout;
+    UInt32          keyTranslateState;
+	UInt32              deadKeyState;
+    OSStatus err = noErr;
+    CFLocaleRef locale = CFLocaleCopyCurrent();
+	
+	CFMutableStringRef resultString;
+	
+    err = KLGetCurrentKeyboardLayout( &currentLayout );
+    if(err != noErr)
+		return FailWithNaiveString;
+	
+    err = KLGetKeyboardLayoutProperty( currentLayout, kKLKind, (const void **)&keyLayoutKind );
+    if (err != noErr)
+		return FailWithNaiveString;
+	
+    if (keyLayoutKind == kKLKCHRKind) {
+		PUDNSLog(@"KCHR kind key layout");
+		err = KLGetKeyboardLayoutProperty( currentLayout, kKLKCHRData, (const void **)&KCHRData );
+		if (err != noErr)
+			return FailWithNaiveString;
+    } else {
+		PUDNSLog(@"uchr kind key layout");
+		err = KLGetKeyboardLayoutProperty( currentLayout, kKLuchrData, (const void **)&uchrData );
+		if (err !=  noErr)
+			return FailWithNaiveString;
+    }
+	
+    if (keyLayoutKind == kKLKCHRKind) {
+		UInt16 keyc = (UInt16)keyCode;
+		keyc |= (1 << 7);
+		if (cocoaFlags & NSAlternateKeyMask) keyc |= optionKey;
+		if (cocoaFlags & NSShiftKeyMask) keyc |= shiftKey;
+
+		UInt32 charCode = KeyTranslate( KCHRData, keyc, &keyTranslateState );
+
+		charCode = CFSwapInt32BigToHost(charCode);
+		PUDNSLog(@"char code: %X", charCode);
+		UniChar chars[2];
+		CFIndex length = 0;
+
+		// Thanks to Peter Hosey for this particular piece of henious villainy.
+		union {
+			UInt32 uint32;
+			struct { // No, we don't need to conditionally compile these with different orders since we swap the int.
+				char reserved1;
+				char char1;
+				char reserved2;
+				char char2;
+			} charStruct;
+		} charactersUnion;
+		charactersUnion.uint32 = charCode;
+		if(charactersUnion.charStruct.char1) {
+			chars[0] = charactersUnion.charStruct.char1;
+			chars[1] = charactersUnion.charStruct.char2;
+			length = 2;
+		} else {
+			chars[0] = charactersUnion.charStruct.char2;
+			length = 1;
+		}
+		CFStringRef temp = CFStringCreateWithCharacters(kCFAllocatorDefault, chars, length); 
+		resultString = CFStringCreateMutableCopy(kCFAllocatorDefault, 0,temp);
+		if(temp)
+			CFRelease(temp);
+	} else {
+		EventModifiers modifiers = 0;
+		if (cocoaFlags & NSAlternateKeyMask)	modifiers |= optionKey;
+		if (cocoaFlags & NSShiftKeyMask)		modifiers |= shiftKey;
+		UniCharCount maxStringLength = 4, actualStringLength;
+		UniChar unicodeString[4];
+		err = UCKeyTranslate( uchrData, (UInt16)keyCode, kUCKeyActionDisplay, modifiers, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, maxStringLength, &actualStringLength, unicodeString );
+		CFStringRef temp = CFStringCreateWithCharacters(kCFAllocatorDefault, unicodeString, 1);
+		resultString = CFStringCreateMutableCopy(kCFAllocatorDefault, 0,temp);
+		if(temp)
+			CFRelease(temp);
+	}   
+	CFStringCapitalize(resultString, locale);
+	CFRelease(locale);
+	
+	PUDNSLog(@"character: -%@-", (NSString *)resultString);
+	
+	return (NSString *)resultString;
+	
 }
 
 #pragma mark Animation Easing

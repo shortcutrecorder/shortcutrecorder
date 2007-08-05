@@ -55,6 +55,9 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 	NSTrackingRectTag   snapbackTrackingRectTag;
 	
 	KeyCombo            keyCombo;
+	BOOL				hasKeyChars;
+	NSString		    *keyChars;
+	NSString		    *keyCharsIgnoringModifiers;
 	
 	unsigned int        allowedFlags;
 	unsigned int        requiredFlags;
@@ -116,6 +119,9 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 
 // Returns the displayed key combination if set
 - (NSString *)keyComboString;
+
+- (NSString *)keyChars;
+- (NSString *)keyCharsIgnoringModifiers;
 
 @end
 

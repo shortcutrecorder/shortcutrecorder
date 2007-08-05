@@ -44,6 +44,9 @@
 - (KeyCombo)keyCombo;
 - (void)setKeyCombo:(KeyCombo)aKeyCombo;
 
+- (NSString *)keyChars;
+- (NSString *)keyCharsIgnoringModifiers;
+
 #pragma mark *** Autosave Control ***
 
 - (NSString *)autosaveName;

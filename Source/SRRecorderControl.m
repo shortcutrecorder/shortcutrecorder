@@ -147,6 +147,14 @@
 	[super setFrame: correctedFrarme];
 }
 
+- (NSString *)keyChars {
+	return [SRCell keyChars];
+}
+
+- (NSString *)keyCharsIgnoringModifiers {
+	return [SRCell keyCharsIgnoringModifiers];	
+}
+
 #pragma mark *** Key Interception ***
 
 // Like most NSControls, pass things on to the cell
