@@ -206,6 +206,16 @@
 	return [SRCell escapeKeysRecord];
 }
 
+- (BOOL)canCaptureGlobalHotKeys
+{
+	return [[self cell] canCaptureGlobalHotKeys];
+}
+
+- (void)setCanCaptureGlobalHotKeys:(BOOL)inState
+{
+	[[self cell] setCanCaptureGlobalHotKeys:inState];
+}
+
 - (unsigned int)requiredFlags
 {
 	return [SRCell requiredFlags];

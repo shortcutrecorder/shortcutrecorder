@@ -49,6 +49,7 @@
 
 - (IBAction)toggleGlobalHotKey:(id)sender
 {
+	[shortcutRecorder setCanCaptureGlobalHotKeys:[globalHotKeyCheckBox state]];
 	if (globalHotKey != nil)
 	{
 		[[PTHotKeyCenter sharedCenter] unregisterHotKey: globalHotKey];

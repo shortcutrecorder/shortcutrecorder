@@ -978,6 +978,16 @@
 	[[self controlView] display];
 }
 
+- (BOOL)canCaptureGlobalHotKeys
+{
+	return globalHotKeys;
+}
+
+- (void)setCanCaptureGlobalHotKeys:(BOOL)inState
+{
+	globalHotKeys = inState;
+}
+
 #pragma mark *** Autosave Control ***
 
 - (NSString *)autosaveName
@@ -1132,7 +1142,6 @@
     // Reset recording flags and determine which are required
     recordingFlags = [self _filteredCocoaFlags: ShortcutRecorderEmptyFlags];
     
-
 /*	[self setFocusRingType:NSFocusRingTypeNone];
 	[[self controlView] setFocusRingType:NSFocusRingTypeNone];*/	
 	[[self controlView] setNeedsDisplay:YES];
@@ -1140,6 +1149,8 @@
     // invalidate the focus ring rect...
     NSView *controlView = [self controlView];
     [controlView setKeyboardFocusRingNeedsDisplayInRect:[controlView bounds]];
+
+    if (globalHotKeys) hotKeyModeToken = PushSymbolicHotKeyMode(kHIHotKeyModeAllDisabled);
 }
 
 - (void)_endRecording;
@@ -1154,6 +1165,8 @@
     // invalidate the focus ring rect...
     NSView *controlView = [self controlView];
     [controlView setKeyboardFocusRingNeedsDisplayInRect:[controlView bounds]];
+	
+	if (globalHotKeys) PopSymbolicHotKeyMode(hotKeyModeToken);
 }
 
 #pragma mark *** Autosave ***

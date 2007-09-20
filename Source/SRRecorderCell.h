@@ -71,6 +71,8 @@ typedef enum SRRecorderStyle SRRecorderStyle;
     SRValidator         *validator;
     
 	IBOutlet id         delegate;
+	BOOL				globalHotKeys;
+	void				*hotKeyModeToken;
 }
 
 - (void)resetTrackingRects;
@@ -108,6 +110,9 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 - (BOOL)allowsKeyOnly;
 - (void)setAllowsKeyOnly:(BOOL)nAllowsKeyOnly escapeKeysRecord:(BOOL)nEscapeKeysRecord;
 - (BOOL)escapeKeysRecord;
+
+- (BOOL)canCaptureGlobalHotKeys;
+- (void)setCanCaptureGlobalHotKeys:(BOOL)inState;
 
 - (KeyCombo)keyCombo;
 - (void)setKeyCombo:(KeyCombo)aKeyCombo;

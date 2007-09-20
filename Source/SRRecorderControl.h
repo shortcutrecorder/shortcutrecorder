@@ -38,6 +38,9 @@
 - (void)setAllowsKeyOnly:(BOOL)nAllowsKeyOnly escapeKeysRecord:(BOOL)nEscapeKeysRecord;
 - (BOOL)escapeKeysRecord;
 
+- (BOOL)canCaptureGlobalHotKeys;
+- (void)setCanCaptureGlobalHotKeys:(BOOL)inState;
+
 - (unsigned int)requiredFlags;
 - (void)setRequiredFlags:(unsigned int)flags;
 
