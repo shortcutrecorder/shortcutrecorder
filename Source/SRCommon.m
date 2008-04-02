@@ -469,6 +469,7 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 	[cross lineToPoint:MakeRelativePoint(4,10)];
 		
 	[cross stroke];
+	[cross release];
 }
 + (void)_drawSRRemoveShortcut:(id)anNSCustomImageRep {
 	
