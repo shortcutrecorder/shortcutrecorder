@@ -377,15 +377,13 @@
 			isVaguelyRecording = YES;
 		}
 		
-//	NSAffineTransform *transitionMovement = [[NSAffineTransform alloc] init];
-		NSAffineTransform *viewportMovement = [[NSAffineTransform alloc] init];
-		CTGradient *currRecordingGradient = [recordingGradient gradientWithAlphaComponent:0.3];
+//	NSAffineTransform *transitionMovement = [NSAffineTransform transform];
+		NSAffineTransform *viewportMovement = [NSAffineTransform transform];
 	// Draw gradient when in recording mode
 		if (isVaguelyRecording)
 		{
 			if (isAnimatingNow) {
 //			[transitionMovement translateXBy:(isAnimatingTowardsRecording ? -(NSWidth(cellFrame)*(1.0-xanim)) : +(NSWidth(cellFrame)*xanim)) yBy:0.0];
-				currRecordingGradient = [currRecordingGradient gradientWithAlphaComponent:alphaRecording];
 				if (SRAnimationAxisIsY) {
 //				[viewportMovement translateXBy:0.0 yBy:(isAnimatingTowardsRecording ? -(NSHeight(cellFrame)*(xanim)) : -(NSHeight(cellFrame)*(1.0-xanim)))];
 					[viewportMovement translateXBy:0.0 yBy:(isAnimatingTowardsRecording ? NSHeight(cellFrame)*(xanim) : NSHeight(cellFrame)*(1.0-xanim))];
@@ -413,11 +411,6 @@
 		
 //	if (isVaguelyRecording) 
 		{
-			roundedRect = [viewportMovement transformBezierPath:[NSBezierPath bezierPathWithSRCRoundRectInRect:SRAnimationOffsetRect(cellFrame,cellFrame) radius:NSHeight(cellFrame)/2.0]];
-			
-		// Fill background with gradient
-		//		[currRecordingGradient fillRect:cellFrame angle:90.0];
-			
 			NSRect snapBackRect = SRAnimationOffsetRect([self _snapbackRectForFrame: cellFrame],cellFrame);
 //		NSLog(@"snapbackrect: %@; offset: %@", NSStringFromRect([self _snapbackRectForFrame: cellFrame]), NSStringFromRect(snapBackRect));
 			NSPoint correctedSnapBackOrigin = [viewportMovement transformPoint:snapBackRect.origin];
@@ -647,7 +640,7 @@
 - (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(SRRecorderControl *)controlView untilMouseUp:(BOOL)flag
 {		
 	NSEvent *currentEvent = theEvent;
-	NSPoint mouseLocation = [controlView convertPoint:[currentEvent locationInWindow] fromView:nil];
+	NSPoint mouseLocation;
 	
 	NSRect trackingRect = (isRecording ? [self _snapbackRectForFrame: cellFrame] : [self _removeButtonRectForFrame: cellFrame]);
 	NSRect leftRect = cellFrame;
@@ -1192,13 +1185,11 @@
 		
 		if (hasKeyChars) {
 			
-			NSMutableDictionary *mutableDefaultsValue = [defaultsValue mutableCopy];
+			NSMutableDictionary *mutableDefaultsValue = [[defaultsValue mutableCopy] autorelease];
 			[mutableDefaultsValue setObject:keyChars forKey:@"keyChars"];
 			[mutableDefaultsValue setObject:keyCharsIgnoringModifiers forKey:@"keyCharsIgnoringModifiers"];
 			
-			defaultsValue = [mutableDefaultsValue copy];
-			[mutableDefaultsValue release];
-			
+			defaultsValue = mutableDefaultsValue;
 		}
 		
 		[values setValue:defaultsValue forKey:[self _defaultsKeyForAutosaveName: defaultsKey]];

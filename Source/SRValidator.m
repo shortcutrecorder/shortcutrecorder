@@ -242,7 +242,7 @@
 
 - (void) setDelegate: (id) theDelegate
 {
-    delegate = [theDelegate retain];
+    delegate = theDelegate; // Standard delegate pattern does not retain the delegate
 }
 
 @end

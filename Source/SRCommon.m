@@ -173,6 +173,7 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int 
 	UInt32              deadKeyState;
     OSStatus err = noErr;
     CFLocaleRef locale = CFLocaleCopyCurrent();
+	[(id)locale autorelease]; // Autorelease here so that it gets released no matter what
 	
 	CFMutableStringRef resultString;
 	
@@ -241,16 +242,14 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int 
 		err = UCKeyTranslate( uchrData, (UInt16)keyCode, kUCKeyActionDisplay, modifiers, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, maxStringLength, &actualStringLength, unicodeString );
 		CFStringRef temp = CFStringCreateWithCharacters(kCFAllocatorDefault, unicodeString, 1);
 		resultString = CFStringCreateMutableCopy(kCFAllocatorDefault, 0,temp);
-		if(temp)
+		if (temp)
 			CFRelease(temp);
 	}   
 	CFStringCapitalize(resultString, locale);
-	CFRelease(locale);
 	
 	PUDNSLog(@"character: -%@-", (NSString *)resultString);
 	
 	return (NSString *)resultString;
-	
 }
 
 #pragma mark Animation Easing
@@ -367,6 +366,7 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 //	NSLog(@"created customImageRep: %@", customImageRep);
 	NSImage *returnImage = [[NSImage alloc] initWithSize:size];
 	[returnImage addRepresentation:customImageRep];
+	[customImageRep release];
 	[returnImage setScalesWhenResized:YES];
 	[SRSharedImageCache setObject:returnImage forKey:name];
 	
@@ -383,6 +383,7 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 //	NSLog(@"created customImageRepQDRPL: %@", customImageRepQDRPL);
 	NSImage *returnImageQDRPL = [[NSImage alloc] initWithSize:sizeQDRPL];
 	[returnImageQDRPL addRepresentation:customImageRepQDRPL];
+	[customImageRepQDRPL release];
 	[returnImageQDRPL setScalesWhenResized:YES];
 	[returnImageQDRPL setFlipped:YES];
 	NSData *tiffQDRPL = [returnImageQDRPL TIFFRepresentation];
@@ -439,6 +440,9 @@ static NSMutableDictionary *SRSharedImageCache = nil;
 	
 	[bp fill];
 	
+	[bp release];
+	[flip release];
+	[sh release];
 }
 
 + (NSValue *)_sizeSRRemoveShortcut {

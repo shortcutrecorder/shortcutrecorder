@@ -182,6 +182,8 @@ static NSArray              *padKeysArray        = nil;
                               length,
                               &realLength,
                               chars);
+		
+		if ( err != noErr ) return nil;
         
 		NSString *keyString = [[NSString stringWithCharacters:chars length:1] uppercaseString];
 		
