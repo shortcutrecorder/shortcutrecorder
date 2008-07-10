@@ -266,30 +266,6 @@ double SRAnimationEaseInOut(double t) {
 #pragma mark -
 #pragma mark additions
 
-@implementation NSError( SRAdditions )
-
-- (NSString *)localizedDescription
-{
-	return [[self userInfo] objectForKey:@"NSLocalizedDescription"];
-}
-
-- (NSString *)localizedFailureReason
-{
-	return [[self userInfo] objectForKey:@"NSLocalizedFailureReasonErrorKey"];
-}
-
-- (NSString *)localizedRecoverySuggestion
-{
-	return [[self userInfo] objectForKey:@"NSLocalizedRecoverySuggestionErrorKey"];	
-}
-
-- (NSArray *)localizedRecoveryOptions
-{
-	return [[self userInfo] objectForKey:@"NSLocalizedRecoveryOptionsKey"];
-}
-
-@end
-
 @implementation NSAlert( SRAdditions )
 
 //---------------------------------------------------------- 

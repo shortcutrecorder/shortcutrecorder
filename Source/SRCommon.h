@@ -173,12 +173,6 @@ FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(signed short keyCode) {
 #pragma mark -
 #pragma mark Additions
 
-@interface NSError( SRAdditions )
-- (NSString *)localizedFailureReason;
-- (NSString *)localizedRecoverySuggestion;
-- (NSArray *)localizedRecoveryOptions;
-@end
-
 @interface NSAlert( SRAdditions )
 + (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
 @end

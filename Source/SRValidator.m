@@ -54,14 +54,11 @@
                     SRReadableStringForCarbonModifierFlagsAndKeyCode( flags, keyCode ),
                     ( delegateReason && [delegateReason length] ) ? delegateReason : @"it's already used"];
                 NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                    description,
-                    @"NSLocalizedDescriptionKey",
-                    recoverySuggestion,
-                    @"NSLocalizedRecoverySuggestionErrorKey",
-                    [NSArray arrayWithObject:@"OK"],
-                    @"NSLocalizedRecoveryOptionsErrorKey",
-                    nil];
-                *error = [NSError errorWithDomain:@"NSCocoaErrorDomain" code:0 userInfo:userInfo];
+										  description, NSLocalizedDescriptionKey,
+										  recoverySuggestion, NSLocalizedRecoverySuggestionErrorKey,
+										  [NSArray arrayWithObject:@"OK"], NSLocalizedRecoveryOptionsErrorKey, // Is this needed? Shouldn't it show 'OK' by default? -AK
+										  nil];
+                *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
             }
 			return YES;
 		}
@@ -130,15 +127,12 @@
                 NSString *recoverySuggestion = [NSString stringWithFormat: 
                     SRLoc(@"The key combination \"%@\" can't be used because it's already used by a system-wide keyboard shortcut. (If you really want to use this key combination, most shortcuts can be changed in the Keyboard & Mouse panel in System Preferences.)"), 
                     SRReadableStringForCarbonModifierFlagsAndKeyCode( flags, keyCode )];
-                NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                    description,
-                    @"NSLocalizedDescriptionKey",
-                    recoverySuggestion,
-                    @"NSLocalizedRecoverySuggestionErrorKey",
-                    [NSArray arrayWithObject:@"OK"],
-                    @"NSLocalizedRecoveryOptionsErrorKey",
-                    nil];
-                *error = [NSError errorWithDomain:@"NSCocoaErrorDomain" code:0 userInfo:userInfo];
+				NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+										  description, NSLocalizedDescriptionKey,
+										  recoverySuggestion, NSLocalizedRecoverySuggestionErrorKey,
+										  [NSArray arrayWithObject:@"OK"], NSLocalizedRecoveryOptionsErrorKey,
+										  nil];
+                *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
             }
             return YES;
         }
@@ -213,14 +207,11 @@
                         SRReadableStringForCocoaModifierFlagsAndKeyCode( menuItemModifierFlags, keyCode ),
                         [menuItem title]];
                     NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-                        description,
-                        @"NSLocalizedDescriptionKey",
-                        recoverySuggestion,
-                        @"NSLocalizedRecoverySuggestionErrorKey",
-                        [NSArray arrayWithObject:@"OK"],
-                        @"NSLocalizedRecoveryOptionsErrorKey",
-                        nil];
-                    *error = [NSError errorWithDomain:@"NSCocoaErrorDomain" code:0 userInfo:userInfo];
+											  description, NSLocalizedDescriptionKey,
+											  recoverySuggestion, NSLocalizedRecoverySuggestionErrorKey,
+											  [NSArray arrayWithObject:@"OK"], NSLocalizedRecoveryOptionsErrorKey,
+											  nil];
+                    *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
                 }
 				return YES;
 			}
