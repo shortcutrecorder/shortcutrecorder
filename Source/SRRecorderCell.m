@@ -215,7 +215,10 @@
 	}
 }
 
-- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+{
+	CGFloat radius = 0;
+
 	if (style == SRGradientBorderStyle) {
 		
 		NSRect whiteRect = cellFrame;
@@ -224,7 +227,8 @@
 	// Draw gradient when in recording mode
 		if (isRecording)
 		{
-			roundedRect = [NSBezierPath bezierPathWithSRCRoundRectInRect:cellFrame radius:NSHeight(cellFrame)/2.0];
+			radius = NSHeight(cellFrame) / 2.0;
+			roundedRect = [NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:radius yRadius:radius];
 			
 		// Fill background with gradient
 			[[NSGraphicsContext currentContext] saveGraphicsState];
@@ -249,7 +253,8 @@
 		}
 		
 	// Draw white rounded box
-		roundedRect = [NSBezierPath bezierPathWithSRCRoundRectInRect:whiteRect radius:NSHeight(whiteRect)/2.0];
+		radius = NSHeight(whiteRect) / 2.0;
+		roundedRect = [NSBezierPath bezierPathWithRoundedRect:whiteRect xRadius:radius yRadius:radius];
 		[[NSGraphicsContext currentContext] saveGraphicsState];
 		[roundedRect addClip];
 		[[NSColor whiteColor] set];
@@ -343,8 +348,8 @@
 		{
 			[NSGraphicsContext saveGraphicsState];
 			NSSetFocusRingStyle(NSFocusRingOnly);
-			[[NSBezierPath bezierPathWithSRCRoundRectInRect:cellFrame //NSInsetRect(cellFrame,2,2)
-													 radius:NSHeight(cellFrame)/2.0] fill];
+			radius = NSHeight(cellFrame) / 2.0;
+			[[NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:radius yRadius:radius] fill];
 			[NSGraphicsContext restoreGraphicsState];
 		}
 		
@@ -401,7 +406,8 @@
 		
 		
 	// Draw white rounded box
-		roundedRect = [NSBezierPath bezierPathWithSRCRoundRectInRect:whiteRect radius:NSHeight(whiteRect)/2.0];
+		radius = NSHeight(whiteRect) / 2.0;
+		roundedRect = [NSBezierPath bezierPathWithRoundedRect:whiteRect xRadius:radius yRadius:radius];
 		[[NSColor whiteColor] set];
 		[[NSGraphicsContext currentContext] saveGraphicsState];
 		[roundedRect fill];
@@ -565,8 +571,8 @@
 		{
 			[NSGraphicsContext saveGraphicsState];
 			NSSetFocusRingStyle(NSFocusRingOnly);
-			[[NSBezierPath bezierPathWithSRCRoundRectInRect:cellFrame //NSInsetRect(cellFrame,2,2)
-													 radius:NSHeight(cellFrame)/2.0] fill];
+			radius = NSHeight(cellFrame) / 2.0;
+			[[NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:radius yRadius:radius] fill];
 			[NSGraphicsContext restoreGraphicsState];
 		}
 		
