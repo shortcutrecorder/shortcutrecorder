@@ -447,6 +447,7 @@
 			}
 			CGFloat insetAmount = -([snapBackButton lineWidth]/2.0);
 			[gradient drawInRect:NSInsetRect(correctedSnapBackRect, insetAmount, insetAmount) angle:90];
+			[gradient release];
 
 			/*
 		// Highlight if inside or down
