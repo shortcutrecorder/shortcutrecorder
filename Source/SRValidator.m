@@ -100,7 +100,7 @@
         globalShiftMod      = NO;
         globalCtrlMod       = NO;
         
-        globalHotKeyCharCode = [(NSNumber *)[globalHotKeyInfoDictionary objectForKey:(NSString *)kHISymbolicHotKeyCode] unsignedShortValue];
+        globalHotKeyCharCode = [(NSNumber *)[globalHotKeyInfoDictionary objectForKey:(NSString *)kHISymbolicHotKeyCode] shortValue];
         globalHotKeyUniChar = [[[NSString stringWithFormat:@"%C", globalHotKeyCharCode] uppercaseString] characterAtIndex:0];
         
         CFNumberGetValue((CFNumberRef)[globalHotKeyInfoDictionary objectForKey: (NSString *)kHISymbolicHotKeyModifiers],kCFNumberSInt32Type,&gobalHotKeyFlags);
@@ -116,7 +116,7 @@
         localHotKeyUniChar = [localKeyString characterAtIndex:0];
         
         // compare unichar value and modifier flags
-        if ( ( globalHotKeyUniChar == localHotKeyUniChar ) 
+		if ( ( globalHotKeyCharCode == keyCode ) 
              && ( globalCommandMod == localCommandMod ) 
              && ( globalOptionMod == localOptionMod ) 
              && ( globalShiftMod == localShiftMod ) 
