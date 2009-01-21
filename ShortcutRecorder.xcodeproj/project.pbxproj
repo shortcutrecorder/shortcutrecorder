@@ -713,7 +713,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -R $BUILT_PRODUCTS_DIR/ShortcutRecorder.ibplugin $BUILT_PRODUCTS_DIR/ShortcutRecorder.framework/Versions/A/Resources/";
+			shellScript = "cp -R \"$BUILT_PRODUCTS_DIR/ShortcutRecorder.ibplugin\" \"$BUILT_PRODUCTS_DIR/ShortcutRecorder.framework/Versions/A/Resources/\"";
 			showEnvVarsInLog = 0;
 		};
 		939838C20DA430FB007F53F3 /* ShellScript */ = {
@@ -727,7 +727,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "install_name_tool -change \"@loader_path/../Frameworks/ShortcutRecorder.framework/Versions/A/ShortcutRecorder\" \"@loader_path/../../../../../../../ShortcutRecorder.framework/Versions/A/ShortcutRecorder\" $TARGET_BUILD_DIR\"/ShortcutRecorder.ibplugin/Contents/MacOS/ShortcutRecorder\" \n";
+			shellScript = "install_name_tool -change \"@loader_path/../Frameworks/ShortcutRecorder.framework/Versions/A/ShortcutRecorder\" \"@loader_path/../../../../../../../ShortcutRecorder.framework/Versions/A/ShortcutRecorder\" \"$TARGET_BUILD_DIR/ShortcutRecorder.ibplugin/Contents/MacOS/ShortcutRecorder\" \n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
