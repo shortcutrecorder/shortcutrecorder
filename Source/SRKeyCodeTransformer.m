@@ -134,6 +134,8 @@ static NSArray              *padKeysArray        = nil;
 	if ( unmappedString != nil ) return unmappedString;
 	
 	BOOL isPadKey = [padKeysArray containsObject: SRInt( keyCode )];	
+	
+#if(!__LP64__)
 	KeyboardLayoutRef currentLayoutRef;
 	KeyboardLayoutKind currentLayoutKind;
     OSStatus err;
@@ -173,15 +175,15 @@ static NSArray              *padKeysArray        = nil;
         UniChar chars[4];
         
         err = UCKeyTranslate( keyboardLayout, 
-                              keyCode,
-                              kUCKeyActionDisplay,
-                              0,
-                              LMGetKbdType(),
-                              kUCKeyTranslateNoDeadKeysBit,
-                              &keysDown,
-                              length,
-                              &realLength,
-                              chars);
+							 keyCode,
+							 kUCKeyActionDisplay,
+							 0,
+							 LMGetKbdType(),
+							 kUCKeyTranslateNoDeadKeysBit,
+							 &keysDown,
+							 length,
+							 &realLength,
+							 chars);
 		
 		if ( err != noErr ) return nil;
         
@@ -189,7 +191,40 @@ static NSArray              *padKeysArray        = nil;
 		
         return ( isPadKey ? [NSString stringWithFormat: SRLoc(@"Pad %@"), keyString] : keyString );
 	}
-    
+#else /* __LP64__ makes use of TIS */
+	OSStatus err;
+	TISInputSourceRef tisSource = TISCopyCurrentKeyboardInputSource();
+	CFDataRef layoutData;
+	UInt32 keysDown = 0;
+	if(tisSource)
+	{	
+		layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
+		if(layoutData)
+		{
+			const UCKeyboardLayout *keyLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
+			
+			UniCharCount length = 4, realLength;
+			UniChar chars[4];
+			
+			err = UCKeyTranslate( keyLayout, 
+								 keyCode,
+								 kUCKeyActionDisplay,
+								 0,
+								 LMGetKbdType(),
+								 kUCKeyTranslateNoDeadKeysBit,
+								 &keysDown,
+								 length,
+								 &realLength,
+								 chars);
+			
+			if ( err != noErr ) return nil;
+			
+			NSString *keyString = [[NSString stringWithCharacters:chars length:1] uppercaseString];
+			
+			return ( isPadKey ? [NSString stringWithFormat: SRLoc(@"Pad %@"), keyString] : keyString );
+		}
+	}	
+#endif /* !__LP64__ */
 	return nil;    
 }
 

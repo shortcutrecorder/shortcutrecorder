@@ -14,6 +14,8 @@
 #import "SRCommon.h"
 #import "SRKeyCodeTransformer.h"
 
+#include <IOKit/hidsystem/IOLLEvent.h>
+
 //#define SRCommon_PotentiallyUsefulDebugInfo
 
 #ifdef	SRCommon_PotentiallyUsefulDebugInfo
@@ -165,11 +167,6 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int 
 	// Fall back to string based on key code:
 #define	FailWithNaiveString SRStringForKeyCode(keyCode)
 	
-	UCKeyboardLayout        *uchrData;
-	void                *KCHRData;
-	SInt32              keyLayoutKind;
-    KeyboardLayoutRef currentLayout;
-    UInt32          keyTranslateState;
 	UInt32              deadKeyState;
     OSStatus err = noErr;
     CFLocaleRef locale = CFLocaleCopyCurrent();
@@ -177,6 +174,13 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int 
 	
 	CFMutableStringRef resultString;
 	
+#if !__LP64__
+	UCKeyboardLayout    *uchrData;
+	void                *KCHRData;
+	SInt32              keyLayoutKind;
+    KeyboardLayoutRef currentLayout;
+    UInt32          keyTranslateState;
+		
     err = KLGetCurrentKeyboardLayout( &currentLayout );
     if(err != noErr)
 		return FailWithNaiveString;
@@ -202,7 +206,7 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int 
 		keyc |= (1 << 7);
 		if (cocoaFlags & NSAlternateKeyMask) keyc |= optionKey;
 		if (cocoaFlags & NSShiftKeyMask) keyc |= shiftKey;
-
+		
 		UInt32 charCode = KeyTranslate( KCHRData, keyc, &keyTranslateState );
 
 		charCode = CFSwapInt32BigToHost(charCode);
@@ -245,6 +249,32 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int 
 		if (temp)
 			CFRelease(temp);
 	}   
+	
+#else
+	TISInputSourceRef tisSource = TISCopyCurrentKeyboardInputSource();
+    if(!tisSource)
+		return FailWithNaiveString;
+	
+	CFDataRef layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
+    if (!layoutData)
+		return FailWithNaiveString;
+	
+	const UCKeyboardLayout *keyLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
+    if (!keyLayout)
+		return FailWithNaiveString;
+	
+    
+	EventModifiers modifiers = 0;
+	if (cocoaFlags & NSAlternateKeyMask)	modifiers |= optionKey;
+	if (cocoaFlags & NSShiftKeyMask)		modifiers |= shiftKey;
+	UniCharCount maxStringLength = 4, actualStringLength;
+	UniChar unicodeString[4];
+	err = UCKeyTranslate( keyLayout, (UInt16)keyCode, kUCKeyActionDisplay, modifiers, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, maxStringLength, &actualStringLength, unicodeString );
+	CFStringRef temp = CFStringCreateWithCharacters(kCFAllocatorDefault, unicodeString, 1);
+	resultString = CFStringCreateMutableCopy(kCFAllocatorDefault, 0,temp);
+	if (temp)
+		CFRelease(temp);
+#endif
 	CFStringCapitalize(resultString, locale);
 	
 	PUDNSLog(@"character: -%@-", (NSString *)resultString);

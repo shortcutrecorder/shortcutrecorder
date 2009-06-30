@@ -5,24 +5,16 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>ShortcutRecorder</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.wafflesoftware.ShortcutRecorder.IB.Leopard</string>
+	<string>net.wafflesoftware.ShortcutRecorder.framework.Leopard</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
-	<string>BNDL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>FMWK</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>NSPrincipalClass</key>
-	<string>SR_Leopard</string>
+	<string>1.0</string>
 </dict>
 </plist>

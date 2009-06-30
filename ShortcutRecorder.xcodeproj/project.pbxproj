@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -18,6 +18,19 @@
 				939838B00DA430D1007F53F3 /* PBXTargetDependency */,
 			);
 			name = ShortcutRecorderFramework;
+			productName = ShortcutRecorder.frameworks;
+		};
+		93A9EC390FFA6AC700D0C442 /* ShortcutRecorderFramework 64-bit */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 93A9EC3F0FFA6AC700D0C442 /* Build configuration list for PBXAggregateTarget "ShortcutRecorderFramework 64-bit" */;
+			buildPhases = (
+				93A9EC3E0FFA6AC700D0C442 /* ShellScript */,
+			);
+			dependencies = (
+				93A9EC440FFA6AE600D0C442 /* PBXTargetDependency */,
+				93A9EC460FFA6AE600D0C442 /* PBXTargetDependency */,
+			);
+			name = "ShortcutRecorderFramework 64-bit";
 			productName = ShortcutRecorder.frameworks;
 		};
 /* End PBXAggregateTarget section */
@@ -112,6 +125,34 @@
 		93983B2D0DA43C79007F53F3 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
 		93983B390DA43C82007F53F3 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
 		93983B8B0DA441BB007F53F3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93983B890DA441BB007F53F3 /* MainMenu.xib */; };
+		93A9EC0B0FFA6AC700D0C442 /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29C109CDB9360085E9ED /* SRRecorderControl.m */; };
+		93A9EC0C0FFA6AC700D0C442 /* SRRecorderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29C309CDB9360085E9ED /* SRRecorderCell.m */; };
+		93A9EC0D0FFA6AC700D0C442 /* CTGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8E29BD09CDB9360085E9ED /* CTGradient.m */; };
+		93A9EC0E0FFA6AC700D0C442 /* SRKeyCodeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C3670D0A246B4900B69171 /* SRKeyCodeTransformer.m */; };
+		93A9EC0F0FFA6AC700D0C442 /* SRValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C3670F0A246B4900B69171 /* SRValidator.m */; };
+		93A9EC100FFA6AC700D0C442 /* SRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C367110A246B4900B69171 /* SRCommon.m */; };
+		93A9EC110FFA6AC700D0C442 /* SR_LeopardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 939837B20DA42DC5007F53F3 /* SR_LeopardView.m */; };
+		93A9EC130FFA6AC700D0C442 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		93A9EC140FFA6AC700D0C442 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B57CB1109C482D20000E739 /* Carbon.framework */; };
+		93A9EC170FFA6AC700D0C442 /* ShortcutRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 939837B50DA42DFB007F53F3 /* ShortcutRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93A9EC180FFA6AC700D0C442 /* SR_LeopardView.h in Headers */ = {isa = PBXBuildFile; fileRef = 939837B10DA42DC5007F53F3 /* SR_LeopardView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93A9EC190FFA6AC700D0C442 /* SRRecorderControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B8E29C009CDB9360085E9ED /* SRRecorderControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93A9EC1A0FFA6AC700D0C442 /* SRRecorderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B8E29C209CDB9360085E9ED /* SRRecorderCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93A9EC1B0FFA6AC700D0C442 /* CTGradient.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B8E29BC09CDB9360085E9ED /* CTGradient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93A9EC1C0FFA6AC700D0C442 /* SRKeyCodeTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C3670C0A246B4900B69171 /* SRKeyCodeTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93A9EC1D0FFA6AC700D0C442 /* SRValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C3670E0A246B4900B69171 /* SRValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93A9EC1E0FFA6AC700D0C442 /* SRCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 74C367100A246B4900B69171 /* SRCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93A9EC260FFA6AC700D0C442 /* SRRecorderControl.classdescription in Resources */ = {isa = PBXBuildFile; fileRef = 939838D90DA43194007F53F3 /* SRRecorderControl.classdescription */; };
+		93A9EC270FFA6AC700D0C442 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 939838DB0DA43194007F53F3 /* InfoPlist.strings */; };
+		93A9EC280FFA6AC700D0C442 /* SR_LeopardInspector.nib in Resources */ = {isa = PBXBuildFile; fileRef = 939838DD0DA43194007F53F3 /* SR_LeopardInspector.nib */; };
+		93A9EC290FFA6AC700D0C442 /* SR_LeopardLibrary.nib in Resources */ = {isa = PBXBuildFile; fileRef = 939838DF0DA43194007F53F3 /* SR_LeopardLibrary.nib */; };
+		93A9EC2B0FFA6AC700D0C442 /* SR_LeopardInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 939837AC0DA42DB8007F53F3 /* SR_LeopardInspector.m */; };
+		93A9EC2C0FFA6AC700D0C442 /* SR_Leopard.m in Sources */ = {isa = PBXBuildFile; fileRef = 939837AE0DA42DB8007F53F3 /* SR_Leopard.m */; };
+		93A9EC2D0FFA6AC700D0C442 /* SRRecorderControl+LeopardIB.m in Sources */ = {isa = PBXBuildFile; fileRef = 939837B00DA42DB8007F53F3 /* SRRecorderControl+LeopardIB.m */; };
+		93A9EC2F0FFA6AC700D0C442 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		93A9EC300FFA6AC700D0C442 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B57CB1109C482D20000E739 /* Carbon.framework */; };
+		93A9EC310FFA6AC700D0C442 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
+		93A9EC320FFA6AC700D0C442 /* InterfaceBuilderKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939838CD0DA4316E007F53F3 /* InterfaceBuilderKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +177,20 @@
 			remoteGlobalIDString = 939838AC0DA430B3007F53F3;
 			remoteInfo = ShortcutRecorder.framework;
 		};
+		93A9EC430FFA6AE600D0C442 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 93A9EC080FFA6AC700D0C442 /* ShortcutRecorder.framework 64-bit */;
+			remoteInfo = "ShortcutRecorder.framework 64-bit";
+		};
+		93A9EC450FFA6AE600D0C442 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 93A9EC240FFA6AC700D0C442 /* ShortcutRecorder.ibplugin 64-bit */;
+			remoteInfo = "ShortcutRecorder.ibplugin 64-bit";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,6 +212,15 @@
 				93983B2D0DA43C79007F53F3 /* ShortcutRecorder.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93A9EC150FFA6AC700D0C442 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -223,7 +287,7 @@
 		939837B20DA42DC5007F53F3 /* SR_LeopardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SR_LeopardView.m; path = Framework/SR_LeopardView.m; sourceTree = SOURCE_ROOT; };
 		939837B50DA42DFB007F53F3 /* ShortcutRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShortcutRecorder.h; path = Framework/ShortcutRecorder.h; sourceTree = SOURCE_ROOT; };
 		939838A50DA4300F007F53F3 /* ShortcutRecorder.ibplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShortcutRecorder.ibplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		939838CD0DA4316E007F53F3 /* InterfaceBuilderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterfaceBuilderKit.framework; path = Library/Frameworks/InterfaceBuilderKit.framework; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		939838CD0DA4316E007F53F3 /* InterfaceBuilderKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterfaceBuilderKit.framework; path = Library/Frameworks/InterfaceBuilderKit.framework; sourceTree = DEVELOPER_DIR; };
 		939838D90DA43194007F53F3 /* SRRecorderControl.classdescription */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SRRecorderControl.classdescription; path = Plugin/SRRecorderControl.classdescription; sourceTree = "<group>"; };
 		939838DC0DA43194007F53F3 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = InfoPlist.strings; sourceTree = "<group>"; };
 		939838DE0DA43194007F53F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = SR_LeopardInspector.nib; sourceTree = "<group>"; };
@@ -231,6 +295,10 @@
 		939839740DA4376D007F53F3 /* SR_Leopard_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SR_Leopard_Prefix.pch; path = Plugin/SR_Leopard_Prefix.pch; sourceTree = "<group>"; };
 		93983B220DA43C4E007F53F3 /* ShortcutRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortcutRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93983B8A0DA441BB007F53F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Demo/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		93A9EC220FFA6AC700D0C442 /* ShortcutRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShortcutRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A9EC230FFA6AC700D0C442 /* SR_LeopardFramework-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SR_LeopardFramework-Info copy.plist"; path = "Framework/SR_LeopardFramework-Info copy.plist"; sourceTree = "<group>"; };
+		93A9EC370FFA6AC700D0C442 /* ShortcutRecorder.ibplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShortcutRecorder.ibplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A9EC380FFA6AC700D0C442 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "Plugin/Info copy.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +351,26 @@
 				93983B1C0DA43C4E007F53F3 /* Cocoa.framework in Frameworks */,
 				93983B1D0DA43C4E007F53F3 /* Carbon.framework in Frameworks */,
 				93983B1E0DA43C4E007F53F3 /* CoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93A9EC120FFA6AC700D0C442 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93A9EC130FFA6AC700D0C442 /* Cocoa.framework in Frameworks */,
+				93A9EC140FFA6AC700D0C442 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93A9EC2E0FFA6AC700D0C442 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93A9EC2F0FFA6AC700D0C442 /* Cocoa.framework in Frameworks */,
+				93A9EC300FFA6AC700D0C442 /* Carbon.framework in Frameworks */,
+				93A9EC310FFA6AC700D0C442 /* ShortcutRecorder.framework in Frameworks */,
+				93A9EC320FFA6AC700D0C442 /* InterfaceBuilderKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +509,8 @@
 				939837800DA42965007F53F3 /* ShortcutRecorder.framework */,
 				939838A50DA4300F007F53F3 /* ShortcutRecorder.ibplugin */,
 				93983B220DA43C4E007F53F3 /* ShortcutRecorder.app */,
+				93A9EC220FFA6AC700D0C442 /* ShortcutRecorder.framework */,
+				93A9EC370FFA6AC700D0C442 /* ShortcutRecorder.ibplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -433,6 +523,8 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				93A9EC230FFA6AC700D0C442 /* SR_LeopardFramework-Info copy.plist */,
+				93A9EC380FFA6AC700D0C442 /* Info copy.plist */,
 			);
 			name = ShortcutRecorder;
 			sourceTree = "<group>";
@@ -506,6 +598,21 @@
 				9398393E0DA4350B007F53F3 /* SRKeyCodeTransformer.h in Headers */,
 				9398393F0DA4350B007F53F3 /* SRValidator.h in Headers */,
 				939839400DA4350B007F53F3 /* SRCommon.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93A9EC160FFA6AC700D0C442 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93A9EC170FFA6AC700D0C442 /* ShortcutRecorder.h in Headers */,
+				93A9EC180FFA6AC700D0C442 /* SR_LeopardView.h in Headers */,
+				93A9EC190FFA6AC700D0C442 /* SRRecorderControl.h in Headers */,
+				93A9EC1A0FFA6AC700D0C442 /* SRRecorderCell.h in Headers */,
+				93A9EC1B0FFA6AC700D0C442 /* CTGradient.h in Headers */,
+				93A9EC1C0FFA6AC700D0C442 /* SRKeyCodeTransformer.h in Headers */,
+				93A9EC1D0FFA6AC700D0C442 /* SRValidator.h in Headers */,
+				93A9EC1E0FFA6AC700D0C442 /* SRCommon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,13 +711,50 @@
 			productReference = 93983B220DA43C4E007F53F3 /* ShortcutRecorder.app */;
 			productType = "com.apple.product-type.application";
 		};
+		93A9EC080FFA6AC700D0C442 /* ShortcutRecorder.framework 64-bit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93A9EC1F0FFA6AC700D0C442 /* Build configuration list for PBXNativeTarget "ShortcutRecorder.framework 64-bit" */;
+			buildPhases = (
+				93A9EC090FFA6AC700D0C442 /* Resources */,
+				93A9EC0A0FFA6AC700D0C442 /* Sources */,
+				93A9EC120FFA6AC700D0C442 /* Frameworks */,
+				93A9EC150FFA6AC700D0C442 /* CopyFiles */,
+				93A9EC160FFA6AC700D0C442 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ShortcutRecorder.framework 64-bit";
+			productName = ShortcutRecorder.framework;
+			productReference = 93A9EC220FFA6AC700D0C442 /* ShortcutRecorder.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		93A9EC240FFA6AC700D0C442 /* ShortcutRecorder.ibplugin 64-bit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93A9EC340FFA6AC700D0C442 /* Build configuration list for PBXNativeTarget "ShortcutRecorder.ibplugin 64-bit" */;
+			buildPhases = (
+				93A9EC250FFA6AC700D0C442 /* Resources */,
+				93A9EC2A0FFA6AC700D0C442 /* Sources */,
+				93A9EC2E0FFA6AC700D0C442 /* Frameworks */,
+				93A9EC330FFA6AC700D0C442 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ShortcutRecorder.ibplugin 64-bit";
+			productName = ShortcutRecorder.ibplugin;
+			productReference = 93A9EC370FFA6AC700D0C442 /* ShortcutRecorder.ibplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ShortcutRecorder" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -630,6 +774,9 @@
 				939838A40DA4300F007F53F3 /* ShortcutRecorder.ibplugin */,
 				939838AC0DA430B3007F53F3 /* ShortcutRecorderFramework */,
 				93983B060DA43C4E007F53F3 /* ShortcutRecorderFramework_Tester */,
+				93A9EC080FFA6AC700D0C442 /* ShortcutRecorder.framework 64-bit */,
+				93A9EC240FFA6AC700D0C442 /* ShortcutRecorder.ibplugin 64-bit */,
+				93A9EC390FFA6AC700D0C442 /* ShortcutRecorderFramework 64-bit */,
 			);
 		};
 /* End PBXProject section */
@@ -699,6 +846,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93A9EC090FFA6AC700D0C442 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93A9EC250FFA6AC700D0C442 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93A9EC260FFA6AC700D0C442 /* SRRecorderControl.classdescription in Resources */,
+				93A9EC270FFA6AC700D0C442 /* InfoPlist.strings in Resources */,
+				93A9EC280FFA6AC700D0C442 /* SR_LeopardInspector.nib in Resources */,
+				93A9EC290FFA6AC700D0C442 /* SR_LeopardLibrary.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -729,6 +894,33 @@
 			shellPath = /bin/sh;
 			shellScript = "install_name_tool -change \"@loader_path/../Frameworks/ShortcutRecorder.framework/Versions/A/ShortcutRecorder\" \"@loader_path/../../../../../../../ShortcutRecorder.framework/Versions/A/ShortcutRecorder\" \"$TARGET_BUILD_DIR/ShortcutRecorder.ibplugin/Contents/MacOS/ShortcutRecorder\" \n";
 			showEnvVarsInLog = 0;
+		};
+		93A9EC330FFA6AC700D0C442 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "install_name_tool -change \"@loader_path/../Frameworks/ShortcutRecorder.framework/Versions/A/ShortcutRecorder\" \"@loader_path/../../../../../../../ShortcutRecorder.framework/Versions/A/ShortcutRecorder\" \"$TARGET_BUILD_DIR/ShortcutRecorder.ibplugin/Contents/MacOS/ShortcutRecorder\" \n";
+			showEnvVarsInLog = 0;
+		};
+		93A9EC3E0FFA6AC700D0C442 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -R \"$SYMROOT/64bit/$CONFIGURATION/ShortcutRecorder.ibplugin\" \"$SYMROOT/64bit/$CONFIGURATION/ShortcutRecorder.framework/Versions/A/Resources/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -802,6 +994,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		93A9EC0A0FFA6AC700D0C442 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93A9EC0B0FFA6AC700D0C442 /* SRRecorderControl.m in Sources */,
+				93A9EC0C0FFA6AC700D0C442 /* SRRecorderCell.m in Sources */,
+				93A9EC0D0FFA6AC700D0C442 /* CTGradient.m in Sources */,
+				93A9EC0E0FFA6AC700D0C442 /* SRKeyCodeTransformer.m in Sources */,
+				93A9EC0F0FFA6AC700D0C442 /* SRValidator.m in Sources */,
+				93A9EC100FFA6AC700D0C442 /* SRCommon.m in Sources */,
+				93A9EC110FFA6AC700D0C442 /* SR_LeopardView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93A9EC2A0FFA6AC700D0C442 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93A9EC2B0FFA6AC700D0C442 /* SR_LeopardInspector.m in Sources */,
+				93A9EC2C0FFA6AC700D0C442 /* SR_Leopard.m in Sources */,
+				93A9EC2D0FFA6AC700D0C442 /* SRRecorderControl+LeopardIB.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -819,6 +1035,16 @@
 			isa = PBXTargetDependency;
 			target = 939838AC0DA430B3007F53F3 /* ShortcutRecorderFramework */;
 			targetProxy = 93983B280DA43C60007F53F3 /* PBXContainerItemProxy */;
+		};
+		93A9EC440FFA6AE600D0C442 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 93A9EC080FFA6AC700D0C442 /* ShortcutRecorder.framework 64-bit */;
+			targetProxy = 93A9EC430FFA6AE600D0C442 /* PBXContainerItemProxy */;
+		};
+		93A9EC460FFA6AE600D0C442 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 93A9EC240FFA6AC700D0C442 /* ShortcutRecorder.ibplugin 64-bit */;
+			targetProxy = 93A9EC450FFA6AE600D0C442 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1015,7 +1241,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ShortcutRecorder;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1046,7 +1272,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ShortcutRecorder;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 				WRAPPER_EXTENSION = ibplugin;
 				ZERO_LINK = YES;
 			};
@@ -1077,7 +1303,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ShortcutRecorder;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 				WRAPPER_EXTENSION = ibplugin;
 				ZERO_LINK = NO;
 			};
@@ -1100,7 +1326,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				PRODUCT_NAME = ShortcutRecorder.frameworks;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1134,6 +1360,162 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = ShortcutRecorder;
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		93A9EC200FFA6AC700D0C442 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Framework/SR_LeopardFramework-Info copy.plist";
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				"MACOSX_DEPLOYMENT_TARGET[arch=x86_64]" = 10.6;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ShortcutRecorder;
+				SDKROOT = macosx10.6;
+				SYMROOT = build/64bit;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		93A9EC210FFA6AC700D0C442 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Framework/SR_LeopardFramework-Info copy.plist";
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				"MACOSX_DEPLOYMENT_TARGET[arch=x86_64]" = 10.6;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ShortcutRecorder;
+				SDKROOT = macosx10.6;
+				SYMROOT = build/64bit;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		93A9EC350FFA6AC700D0C442 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(BUILT_PRODUCTS_DIR)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_FRAMEWORKS_DIR)\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Plugin/SR_Leopard_Prefix.pch;
+				INFOPLIST_FILE = "Plugin/Info copy.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				"MACOSX_DEPLOYMENT_TARGET[arch=x86_64]" = 10.6;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ShortcutRecorder;
+				SDKROOT = macosx10.6;
+				SYMROOT = build/64bit;
+				WRAPPER_EXTENSION = ibplugin;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		93A9EC360FFA6AC700D0C442 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)",
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_FRAMEWORKS_DIR)\"";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Plugin/SR_Leopard_Prefix.pch;
+				INFOPLIST_FILE = "Plugin/Info copy.plist";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				"MACOSX_DEPLOYMENT_TARGET[arch=x86_64]" = 10.6;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = ShortcutRecorder;
+				SDKROOT = macosx10.6;
+				SYMROOT = build/64bit;
+				WRAPPER_EXTENSION = ibplugin;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		93A9EC400FFA6AC700D0C442 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = ShortcutRecorder.framework;
+			};
+			name = Debug;
+		};
+		93A9EC410FFA6AC700D0C442 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = ShortcutRecorder.framework;
+				SDKROOT = macosx10.5;
+				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -1173,10 +1555,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.4;
 				WARNING_CFLAGS = "-Wall";
 				WARNING_LDFLAGS = "";
 			};
@@ -1186,10 +1569,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.4;
 				WARNING_CFLAGS = "-Wall";
 				WARNING_LDFLAGS = "";
 			};
@@ -1239,6 +1623,33 @@
 			buildConfigurations = (
 				93983B200DA43C4E007F53F3 /* Debug */,
 				93983B210DA43C4E007F53F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93A9EC1F0FFA6AC700D0C442 /* Build configuration list for PBXNativeTarget "ShortcutRecorder.framework 64-bit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93A9EC200FFA6AC700D0C442 /* Debug */,
+				93A9EC210FFA6AC700D0C442 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93A9EC340FFA6AC700D0C442 /* Build configuration list for PBXNativeTarget "ShortcutRecorder.ibplugin 64-bit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93A9EC350FFA6AC700D0C442 /* Debug */,
+				93A9EC360FFA6AC700D0C442 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		93A9EC3F0FFA6AC700D0C442 /* Build configuration list for PBXAggregateTarget "ShortcutRecorderFramework 64-bit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93A9EC400FFA6AC700D0C442 /* Debug */,
+				93A9EC410FFA6AC700D0C442 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
