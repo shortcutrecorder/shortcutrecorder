@@ -23,8 +23,8 @@
 #pragma mark Typedefs
 
 typedef struct _KeyCombo {
-	unsigned int flags; // 0 for no flags
-	signed short code; // -1 for no code
+	NSUInteger flags; // 0 for no flags
+	NSInteger code; // -1 for no code
 } KeyCombo;
 
 #pragma mark -
@@ -111,7 +111,7 @@ enum {
 //#define SRCommonWriteDebugImagery
 
 // Macros for glyps
-#define SRInt(x) [NSNumber numberWithInt: x]
+#define SRInt(x) [NSNumber numberWithInteger:x]
 #define SRChar(x) [NSString stringWithFormat: @"%C", x]
 
 // Some default values
@@ -136,37 +136,37 @@ enum {
 // SRReadableString... X - X -
 // SRCharacter...      - X - -
 //
-NSString * SRStringForKeyCode( signed short keyCode );
-NSString * SRStringForCarbonModifierFlags( unsigned int flags );
-NSString * SRStringForCarbonModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
-NSString * SRStringForCocoaModifierFlags( unsigned int flags );
-NSString * SRStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
-NSString * SRReadableStringForCarbonModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
-NSString * SRReadableStringForCocoaModifierFlagsAndKeyCode( unsigned int flags, signed short keyCode );
-NSString *SRCharacterForKeyCodeAndCarbonFlags(signed short keyCode, unsigned int carbonFlags);
-NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int cocoaFlags);
+NSString * SRStringForKeyCode( NSInteger keyCode );
+NSString * SRStringForCarbonModifierFlags( NSUInteger flags );
+NSString * SRStringForCarbonModifierFlagsAndKeyCode( NSUInteger flags, NSInteger keyCode );
+NSString * SRStringForCocoaModifierFlags( NSUInteger flags );
+NSString * SRStringForCocoaModifierFlagsAndKeyCode( NSUInteger flags, NSInteger keyCode );
+NSString * SRReadableStringForCarbonModifierFlagsAndKeyCode( NSUInteger flags, NSInteger keyCode );
+NSString * SRReadableStringForCocoaModifierFlagsAndKeyCode( NSUInteger flags, NSInteger keyCode );
+NSString *SRCharacterForKeyCodeAndCarbonFlags(NSInteger keyCode, NSUInteger carbonFlags);
+NSString *SRCharacterForKeyCodeAndCocoaFlags(NSInteger keyCode, NSUInteger cocoaFlags);
 
 #pragma mark Converting between Cocoa and Carbon modifier flags
 
-unsigned int SRCarbonToCocoaFlags( unsigned int carbonFlags );
-unsigned int SRCocoaToCarbonFlags( unsigned int cocoaFlags );
+NSUInteger SRCarbonToCocoaFlags( NSUInteger carbonFlags );
+NSUInteger SRCocoaToCarbonFlags( NSUInteger cocoaFlags );
 
 #pragma mark -
 #pragma mark Animation pace function
 
-double SRAnimationEaseInOut(double t);
+CGFloat SRAnimationEaseInOut(CGFloat t);
 
 #pragma mark -
 #pragma mark Inlines
 
-FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(signed short code, unsigned int flags) {
+FOUNDATION_STATIC_INLINE KeyCombo SRMakeKeyCombo(NSInteger code, NSUInteger flags) {
 	KeyCombo kc;
 	kc.code = code;
 	kc.flags = flags;
 	return kc;
 }
 
-FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(signed short keyCode) {
+FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(NSInteger keyCode) {
 	return (keyCode == kSRKeysF1 || keyCode == kSRKeysF2 || keyCode == kSRKeysF3 || keyCode == kSRKeysF4 || keyCode == kSRKeysF5 || keyCode == kSRKeysF6 || keyCode == kSRKeysF7 || keyCode == kSRKeysF8 || keyCode == kSRKeysF9 || keyCode == kSRKeysF10 || keyCode == kSRKeysF11 || keyCode == kSRKeysF12 || keyCode == kSRKeysF13 || keyCode == kSRKeysF14 || keyCode == kSRKeysF15 || keyCode == kSRKeysF16 || keyCode == kSRKeysSpace || keyCode == kSRKeysDeleteLeft || keyCode == kSRKeysDeleteRight || keyCode == kSRKeysPadClear || keyCode == kSRKeysLeftArrow || keyCode == kSRKeysRightArrow || keyCode == kSRKeysUpArrow || keyCode == kSRKeysDownArrow || keyCode == kSRKeysSoutheastArrow || keyCode == kSRKeysNorthwestArrow || keyCode == kSRKeysEscape || keyCode == kSRKeysPageDown || keyCode == kSRKeysPageUp || keyCode == kSRKeysReturnR2L || keyCode == kSRKeysReturn || keyCode == kSRKeysTabRight || keyCode == kSRKeysHelp);
 }
 

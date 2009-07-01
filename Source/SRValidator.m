@@ -33,7 +33,7 @@
 //---------------------------------------------------------- 
 // isKeyCode:andFlagsTaken:error:
 //---------------------------------------------------------- 
-- (BOOL) isKeyCode:(signed short)keyCode andFlagsTaken:(unsigned int)flags error:(NSError **)error;
+- (BOOL) isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags error:(NSError **)error;
 {
     // if we have a delegate, it goes first...
 	if ( delegate )
@@ -73,10 +73,8 @@
 	
 	NSEnumerator *globalHotKeysEnumerator = [globalHotKeys objectEnumerator];
 	NSDictionary *globalHotKeyInfoDictionary;
-	SInt32 gobalHotKeyFlags;
-	signed short globalHotKeyCharCode;
-	unichar globalHotKeyUniChar;
-	unichar localHotKeyUniChar;
+	int32_t globalHotKeyFlags;
+	NSInteger globalHotKeyCharCode;
 	BOOL globalCommandMod = NO, globalOptionMod = NO, globalShiftMod = NO, globalCtrlMod = NO;
 	BOOL localCommandMod = NO, localOptionMod = NO, localShiftMod = NO, localCtrlMod = NO;
 	
@@ -98,19 +96,17 @@
         globalCtrlMod       = NO;
         
         globalHotKeyCharCode = [(NSNumber *)[globalHotKeyInfoDictionary objectForKey:(NSString *)kHISymbolicHotKeyCode] shortValue];
-        globalHotKeyUniChar = [[[NSString stringWithFormat:@"%C", globalHotKeyCharCode] uppercaseString] characterAtIndex:0];
         
-        CFNumberGetValue((CFNumberRef)[globalHotKeyInfoDictionary objectForKey: (NSString *)kHISymbolicHotKeyModifiers],kCFNumberSInt32Type,&gobalHotKeyFlags);
+        CFNumberGetValue((CFNumberRef)[globalHotKeyInfoDictionary objectForKey: (NSString *)kHISymbolicHotKeyModifiers],kCFNumberSInt32Type,&globalHotKeyFlags);
         
-        if ( gobalHotKeyFlags & cmdKey )        globalCommandMod = YES;
-        if ( gobalHotKeyFlags & optionKey )     globalOptionMod = YES;
-        if ( gobalHotKeyFlags & shiftKey)       globalShiftMod = YES;
-        if ( gobalHotKeyFlags & controlKey )    globalCtrlMod = YES;
+        if ( globalHotKeyFlags & cmdKey )        globalCommandMod = YES;
+        if ( globalHotKeyFlags & optionKey )     globalOptionMod = YES;
+        if ( globalHotKeyFlags & shiftKey)       globalShiftMod = YES;
+        if ( globalHotKeyFlags & controlKey )    globalCtrlMod = YES;
         
         NSString *localKeyString = SRStringForKeyCode( keyCode );
         if (![localKeyString length]) return YES;
         
-        localHotKeyUniChar = [localKeyString characterAtIndex:0];
         
         // compare unichar value and modifier flags
 		if ( ( globalHotKeyCharCode == keyCode ) 
@@ -145,12 +141,12 @@
 //---------------------------------------------------------- 
 // isKeyCode:andFlags:takenInMenu:error:
 //---------------------------------------------------------- 
-- (BOOL) isKeyCode:(signed short)keyCode andFlags:(unsigned int)flags takenInMenu:(NSMenu *)menu error:(NSError **)error;
+- (BOOL) isKeyCode:(NSInteger)keyCode andFlags:(NSUInteger)flags takenInMenu:(NSMenu *)menu error:(NSError **)error;
 {
     NSArray *menuItemsArray = [menu itemArray];
 	NSEnumerator *menuItemsEnumerator = [menuItemsArray objectEnumerator];
 	NSMenuItem *menuItem;
-	unsigned int menuItemModifierFlags;
+	NSUInteger menuItemModifierFlags;
 	NSString *menuItemKeyEquivalent;
 	
 	BOOL menuItemCommandMod = NO, menuItemOptionMod = NO, menuItemShiftMod = NO, menuItemCtrlMod = NO;
@@ -246,7 +242,7 @@
 //---------------------------------------------------------- 
 // shortcutValidator:isKeyCode:andFlagsTaken:reason:
 //---------------------------------------------------------- 
-- (BOOL) shortcutValidator:(SRValidator *)validator isKeyCode:(signed short)keyCode andFlagsTaken:(unsigned int)flags reason:(NSString **)aReason;
+- (BOOL) shortcutValidator:(SRValidator *)validator isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
 {
     return NO;
 }

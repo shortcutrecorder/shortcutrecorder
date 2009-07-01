@@ -42,7 +42,7 @@
 }
 
 - (NSSize)ibMaximumSize {
-	return NSMakeSize(FLT_MAX, SRMaxHeight);
+	return NSMakeSize(CGFLOAT_MAX, SRMaxHeight);
 }
 
 - (NSView *)ibDesignableContentView {

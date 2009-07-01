@@ -126,7 +126,7 @@ static NSArray              *padKeysArray        = nil;
         return nil;
     
     // Can be -1 when empty
-    signed short keyCode = [value shortValue];
+    NSInteger keyCode = [value shortValue];
 	if ( keyCode < 0 ) return nil;
 	
 	// We have some special gylphs for some special keys...
@@ -194,10 +194,10 @@ static NSArray              *padKeysArray        = nil;
     [stringToKeyCodeDict removeAllObjects];
     
     // loop over every keycode (0 - 127) finding its current string mapping...
-	unsigned i;
+	NSUInteger i;
     for ( i = 0U; i < 128U; i++ )
     {
-        NSNumber *keyCode = [NSNumber numberWithUnsignedInt:i];
+        NSNumber *keyCode = [NSNumber numberWithUnsignedInteger:i];
         NSString *string = [transformer transformedValue:keyCode];
         if ( ( string ) && ( [string length] ) )
         {

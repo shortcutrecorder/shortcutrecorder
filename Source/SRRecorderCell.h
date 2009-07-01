@@ -17,14 +17,14 @@
 #define SRMinWidth 50
 #define SRMaxHeight 22
 
-#define SRTransitionFPS 30.0
-#define SRTransitionDuration 0.35
+#define SRTransitionFPS 30.0f
+#define SRTransitionDuration 0.35f
 //#define SRTransitionDuration 2.35
 #define SRTransitionFrames (SRTransitionFPS*SRTransitionDuration)
 #define SRAnimationAxisIsY YES
 #define ShortcutRecorderNewStyleDrawing
 
-#define SRAnimationOffsetRect(X,Y)	(SRAnimationAxisIsY ? NSOffsetRect(X,0.0,-NSHeight(Y)) : NSOffsetRect(X,NSWidth(Y),0.0))
+#define SRAnimationOffsetRect(X,Y)	(SRAnimationAxisIsY ? NSOffsetRect(X,0.0f,-NSHeight(Y)) : NSOffsetRect(X,NSWidth(Y),0.0f))
 
 @class SRRecorderControl, SRValidator;
 
@@ -46,7 +46,7 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 	SRRecorderStyle		style;
 	
 	BOOL				isAnimating;
-	double				transitionProgress;
+	CGFloat				transitionProgress;
 	BOOL				isAnimatingNow;
 	BOOL				isAnimatingTowardsRecording;
 	BOOL				comboJustChanged;
@@ -59,9 +59,9 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 	NSString		    *keyChars;
 	NSString		    *keyCharsIgnoringModifiers;
 	
-	unsigned int        allowedFlags;
-	unsigned int        requiredFlags;
-	unsigned int        recordingFlags;
+	NSUInteger        allowedFlags;
+	NSUInteger        requiredFlags;
+	NSUInteger        recordingFlags;
 	
 	BOOL				allowsKeyOnly;
 	BOOL				escapeKeysRecord;
@@ -101,11 +101,11 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 - (BOOL)performKeyEquivalent:(NSEvent *)theEvent;
 - (void)flagsChanged:(NSEvent *)theEvent;
 
-- (unsigned int)allowedFlags;
-- (void)setAllowedFlags:(unsigned int)flags;
+- (NSUInteger)allowedFlags;
+- (void)setAllowedFlags:(NSUInteger)flags;
 
-- (unsigned int)requiredFlags;
-- (void)setRequiredFlags:(unsigned int)flags;
+- (NSUInteger)requiredFlags;
+- (void)setRequiredFlags:(NSUInteger)flags;
 
 - (BOOL)allowsKeyOnly;
 - (void)setAllowsKeyOnly:(BOOL)nAllowsKeyOnly escapeKeysRecord:(BOOL)nEscapeKeysRecord;
@@ -132,6 +132,6 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 
 // Delegate Methods
 @interface NSObject (SRRecorderCellDelegate)
-- (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(signed short)keyCode andFlagsTaken:(unsigned int)flags reason:(NSString **)aReason;
+- (BOOL)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason;
 - (void)shortcutRecorderCell:(SRRecorderCell *)aRecorderCell keyComboDidChange:(KeyCombo)newCombo;
 @end

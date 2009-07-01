@@ -69,6 +69,7 @@ static id _sharedHotKeyCenter = nil;
 		return YES;
 	
 	hotKeyID.signature = 'HCHk';
+#warning 64BIT: Inspect use of long
 	hotKeyID.id = (long)hotKey;
 	
 	err = RegisterEventHotKey(  [[hotKey keyCombo] keyCode],
@@ -184,6 +185,7 @@ static id _sharedHotKeyCenter = nil;
 
 - (void)sendEvent: (NSEvent*)event
 {
+#warning 64BIT: Inspect use of long
 	long subType;
 	EventHotKeyRef carbonHotKey;
 	
@@ -224,6 +226,7 @@ static id _sharedHotKeyCenter = nil;
 								kEventParamDirectObject, 
 								typeEventHotKeyID,
 								nil,
+#warning 64BIT: Inspect use of sizeof
 								sizeof(EventHotKeyID),
 								nil,
 								&hotKeyID );

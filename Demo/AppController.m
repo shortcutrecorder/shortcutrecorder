@@ -25,7 +25,7 @@
 
 - (IBAction)allowedModifiersChanged:(id)sender
 {
-	unsigned int newFlags = 0;
+	NSUInteger newFlags = 0;
 	
 	if ([allowedModifiersCommandCheckBox state]) newFlags += NSCommandKeyMask;
 	if ([allowedModifiersOptionCheckBox state]) newFlags += NSAlternateKeyMask;
@@ -37,7 +37,7 @@
 
 - (IBAction)requiredModifiersChanged:(id)sender
 {
-	unsigned int newFlags = 0;
+	NSUInteger newFlags = 0;
 	
 	if ([requiredModifiersCommandCheckBox state]) newFlags += NSCommandKeyMask;
 	if ([requiredModifiersOptionCheckBox state]) newFlags += NSAlternateKeyMask;
@@ -71,7 +71,7 @@
 
 - (IBAction)changeAllowsBareKeys:(id)sender {
 	BOOL allowsKeyOnly = NO; BOOL escapeKeysRecord = NO;
-	int allowsTag = [allowsBareKeysPopUp selectedTag];
+	NSInteger allowsTag = [allowsBareKeysPopUp selectedTag];
 	if (allowsTag > 0)
 		allowsKeyOnly = YES;
 	if (allowsTag > 1)
@@ -81,7 +81,7 @@
 }
 
 - (IBAction)changeStyle:(id)sender {
-	int style = [stylePopUp selectedTag];
+	NSInteger style = [stylePopUp selectedTag];
 	BOOL animates = NO;
 	if (style == 2) {
 		style = 1;
@@ -95,7 +95,7 @@
 
 #pragma mark -
 
-- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(signed short)keyCode andFlagsTaken:(unsigned int)flags reason:(NSString **)aReason
+- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger short)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
 {
 	if (aRecorder == shortcutRecorder)
 	{

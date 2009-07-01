@@ -29,14 +29,14 @@
 #define	SRInspectorControlTag	80
 // shift, opt, ctrl
 
-- (unsigned int)cocoaFlagsForSegmentedControl:(NSSegmentedControl *)segC {
+- (NSUInteger)cocoaFlagsForSegmentedControl:(NSSegmentedControl *)segC {
 	NSSegmentedCell *seg = [segC cell];
-	int max = [seg segmentCount];
+	NSInteger max = [seg segmentCount];
 //	NSLog(@"cocoaFlagsForSegmentedControl: %@, seg count: %d", segC, max);
-	unsigned int mask = ShortcutRecorderEmptyFlags;
-	for (int i = 0; i < max; i++) {
+	NSUInteger mask = ShortcutRecorderEmptyFlags;
+	for (NSInteger i = 0; i < max; i++) {
 		if (![seg isSelectedForSegment:i]) continue;
-		int tag = [seg tagForSegment:i];
+		NSInteger tag = [seg tagForSegment:i];
 //		NSLog(@"seg %d is selected; tag %d", i, tag);
 		switch (tag) {
 			case SRInspectorShiftTag:
@@ -57,17 +57,17 @@
 				break;
 		}
 	}
-	NSLog(@"mask is: %d", mask);
+	NSLog(@"mask is: %ld", mask);
 	return mask;
 }
 
-- (void)selectInSegmentedControl:(NSSegmentedControl *)segC basedOnCocoaFlags:(unsigned int)mask {
+- (void)selectInSegmentedControl:(NSSegmentedControl *)segC basedOnCocoaFlags:(NSUInteger)mask {
 	NSSegmentedCell *seg = [segC cell];
 //	NSLog(@"---");
 //	NSLog(@"mask: %d", mask);
-	int max = [seg segmentCount];
-	for (int i = 0; i < max; i++) {
-		int tag = [seg tagForSegment:i];
+	NSInteger max = [seg segmentCount];
+	for (NSInteger i = 0; i < max; i++) {
+		NSInteger tag = [seg tagForSegment:i];
 //		NSLog(@"segment %d, tag %d", i, tag);
 		BOOL toselect = NO;
 		switch (tag) {
@@ -141,10 +141,10 @@
 	
 	SRRecorderControl *rec = [objs objectAtIndex:0];
 	
-	unsigned int allowedF = [self cocoaFlagsForSegmentedControl:allowed];
+	NSUInteger allowedF = [self cocoaFlagsForSegmentedControl:allowed];
 //	NSLog(@"allowedF: %d", allowedF);
 //	NSLog(@"-----");
-	unsigned int requiredF = [self cocoaFlagsForSegmentedControl:required];
+	NSUInteger requiredF = [self cocoaFlagsForSegmentedControl:required];
 //	NSLog(@"requiredF: %d", requiredF);
 //	NSLog(@"-----");
 	[rec setAllowedFlags:allowedF];
@@ -156,7 +156,7 @@
 	[initial setRequiredFlags:requiredF];
 	
 	BOOL allowsKeyOnly = NO; BOOL escapeKeysRecord = NO;
-	int allowsTag = [recordBareKeys selectedTag];
+	NSInteger allowsTag = [recordBareKeys selectedTag];
 	if (allowsTag > 0)
 		allowsKeyOnly = YES;
 	if (allowsTag > 1)
