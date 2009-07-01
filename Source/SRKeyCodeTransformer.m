@@ -135,97 +135,36 @@ static NSArray              *padKeysArray        = nil;
 	
 	BOOL isPadKey = [padKeysArray containsObject: SRInt( keyCode )];	
 	
-#if(!__LP64__)
-	KeyboardLayoutRef currentLayoutRef;
-	KeyboardLayoutKind currentLayoutKind;
-    OSStatus err;
-	
-	err = KLGetCurrentKeyboardLayout( &currentLayoutRef );
-    if (err != noErr) return nil;
-	
-	err = KLGetKeyboardLayoutProperty( currentLayoutRef, kKLKind,(const void **)&currentLayoutKind );
-	if ( err != noErr ) return nil;
-    
-	UInt32 keysDown = 0;
-	
-	if ( currentLayoutKind == kKLKCHRKind )
-	{
-		Handle kchrHandle;
-        
-		err = KLGetKeyboardLayoutProperty( currentLayoutRef, kKLKCHRData, (const void **)&kchrHandle );
-		if ( err != noErr ) return nil;
-		
-		UInt32 charCode = KeyTranslate( kchrHandle, keyCode, &keysDown );
-		
-		if (keysDown != 0) charCode = KeyTranslate( kchrHandle, keyCode, &keysDown );
-		
-        char theChar = ( charCode & 0x00FF );
-		
-		NSString *keyString = [[[[NSString alloc] initWithData:[NSData dataWithBytes:&theChar length:1] encoding:NSMacOSRomanStringEncoding] autorelease] uppercaseString];
-		
-        return ( isPadKey ? [NSString stringWithFormat: SRLoc(@"Pad %@"), keyString] : keyString );
-	}
-	else // kKLuchrKind, kKLKCHRuchrKind
-	{
-		UCKeyboardLayout *keyboardLayout = NULL;
-		err = KLGetKeyboardLayoutProperty( currentLayoutRef, kKLuchrData, (const void **)&keyboardLayout );
-		if ( err != noErr ) return nil;
-		
-		UniCharCount length = 4, realLength;
-        UniChar chars[4];
-        
-        err = UCKeyTranslate( keyboardLayout, 
-							 keyCode,
-							 kUCKeyActionDisplay,
-							 0,
-							 LMGetKbdType(),
-							 kUCKeyTranslateNoDeadKeysBit,
-							 &keysDown,
-							 length,
-							 &realLength,
-							 chars);
-		
-		if ( err != noErr ) return nil;
-        
-		NSString *keyString = [[NSString stringWithCharacters:chars length:1] uppercaseString];
-		
-        return ( isPadKey ? [NSString stringWithFormat: SRLoc(@"Pad %@"), keyString] : keyString );
-	}
-#else /* __LP64__ makes use of TIS */
 	OSStatus err;
 	TISInputSourceRef tisSource = TISCopyCurrentKeyboardInputSource();
+	if(!tisSource) return nil;
+	
 	CFDataRef layoutData;
 	UInt32 keysDown = 0;
-	if(tisSource)
-	{	
-		layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
-		if(layoutData)
-		{
-			const UCKeyboardLayout *keyLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
+	layoutData = (CFDataRef)TISGetInputSourceProperty(tisSource, kTISPropertyUnicodeKeyLayoutData);
+	if(!layoutData) return nil;
+
+	const UCKeyboardLayout *keyLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
 			
-			UniCharCount length = 4, realLength;
-			UniChar chars[4];
-			
-			err = UCKeyTranslate( keyLayout, 
-								 keyCode,
-								 kUCKeyActionDisplay,
-								 0,
-								 LMGetKbdType(),
-								 kUCKeyTranslateNoDeadKeysBit,
-								 &keysDown,
-								 length,
-								 &realLength,
-								 chars);
-			
-			if ( err != noErr ) return nil;
-			
-			NSString *keyString = [[NSString stringWithCharacters:chars length:1] uppercaseString];
-			
-			return ( isPadKey ? [NSString stringWithFormat: SRLoc(@"Pad %@"), keyString] : keyString );
-		}
-	}	
-#endif /* !__LP64__ */
-	return nil;    
+	UniCharCount length = 4, realLength;
+	UniChar chars[4];
+	
+	err = UCKeyTranslate( keyLayout, 
+						 keyCode,
+						 kUCKeyActionDisplay,
+						 0,
+						 LMGetKbdType(),
+						 kUCKeyTranslateNoDeadKeysBit,
+						 &keysDown,
+						 length,
+						 &realLength,
+						 chars);
+	
+	if ( err != noErr ) return nil;
+	
+	NSString *keyString = [[NSString stringWithCharacters:chars length:1] uppercaseString];
+	
+	return ( isPadKey ? [NSString stringWithFormat: SRLoc(@"Pad %@"), keyString] : keyString );
 }
 
 //---------------------------------------------------------- 

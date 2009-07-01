@@ -173,23 +173,6 @@ FOUNDATION_STATIC_INLINE BOOL SRIsSpecialKey(signed short keyCode) {
 #pragma mark -
 #pragma mark Additions
 
-//
-// This segment is a category on NSBezierPath to supply roundrects. It's a common thing if you're drawing,
-// so to integrate well, we use an oddball method signature to not implement the same method twice.
-//
-// This code is originally from http://www.cocoadev.com/index.pl?RoundedRectangles and no license demands
-// (or Copyright demands) are stated, so we pretend it's public domain. 
-//
-@interface NSBezierPath( SRAdditions )
-+ (NSBezierPath*)bezierPathWithSRCRoundRectInRect:(NSRect)aRect radius:(float)radius;
-@end
-
-@interface NSError( SRAdditions )
-- (NSString *)localizedFailureReason;
-- (NSString *)localizedRecoverySuggestion;
-- (NSArray *)localizedRecoveryOptions;
-@end
-
 @interface NSAlert( SRAdditions )
 + (NSAlert *) alertWithNonRecoverableError:(NSError *)error;
 @end

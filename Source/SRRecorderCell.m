@@ -13,7 +13,6 @@
 
 #import "SRRecorderCell.h"
 #import "SRRecorderControl.h"
-#import "CTGradient.h"
 #import "SRKeyCodeTransformer.h"
 #import "SRValidator.h"
 
@@ -215,7 +214,10 @@
 	}
 }
 
-- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
+{
+	CGFloat radius = 0;
+
 	if (style == SRGradientBorderStyle) {
 		
 		NSRect whiteRect = cellFrame;
@@ -224,12 +226,13 @@
 	// Draw gradient when in recording mode
 		if (isRecording)
 		{
-			roundedRect = [NSBezierPath bezierPathWithSRCRoundRectInRect:cellFrame radius:NSHeight(cellFrame)/2.0];
+			radius = NSHeight(cellFrame) / 2.0;
+			roundedRect = [NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:radius yRadius:radius];
 			
 		// Fill background with gradient
 			[[NSGraphicsContext currentContext] saveGraphicsState];
 			[roundedRect addClip];
-			[recordingGradient fillRect:cellFrame angle:90.0];
+			[recordingGradient drawInRect:cellFrame angle:90.0];
 			[[NSGraphicsContext currentContext] restoreGraphicsState];
 			
 		// Highlight if inside or down
@@ -249,7 +252,8 @@
 		}
 		
 	// Draw white rounded box
-		roundedRect = [NSBezierPath bezierPathWithSRCRoundRectInRect:whiteRect radius:NSHeight(whiteRect)/2.0];
+		radius = NSHeight(whiteRect) / 2.0;
+		roundedRect = [NSBezierPath bezierPathWithRoundedRect:whiteRect xRadius:radius yRadius:radius];
 		[[NSGraphicsContext currentContext] saveGraphicsState];
 		[roundedRect addClip];
 		[[NSColor whiteColor] set];
@@ -343,8 +347,8 @@
 		{
 			[NSGraphicsContext saveGraphicsState];
 			NSSetFocusRingStyle(NSFocusRingOnly);
-			[[NSBezierPath bezierPathWithSRCRoundRectInRect:cellFrame //NSInsetRect(cellFrame,2,2)
-													 radius:NSHeight(cellFrame)/2.0] fill];
+			radius = NSHeight(cellFrame) / 2.0;
+			[[NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:radius yRadius:radius] fill];
 			[NSGraphicsContext restoreGraphicsState];
 		}
 		
@@ -401,7 +405,8 @@
 		
 		
 	// Draw white rounded box
-		roundedRect = [NSBezierPath bezierPathWithSRCRoundRectInRect:whiteRect radius:NSHeight(whiteRect)/2.0];
+		radius = NSHeight(whiteRect) / 2.0;
+		roundedRect = [NSBezierPath bezierPathWithRoundedRect:whiteRect xRadius:radius yRadius:radius];
 		[[NSColor whiteColor] set];
 		[[NSGraphicsContext currentContext] saveGraphicsState];
 		[roundedRect fill];
@@ -430,7 +435,20 @@
 			[[[[NSColor windowFrameColor] shadowWithLevel:0.2] colorWithAlphaComponent:alphaRecording] set];
 			[snapBackButton stroke];
 //		NSLog(@"stroked along path of %@", NSStringFromRect(correctedSnapBackRect));
-			[[((mouseDown && mouseInsideTrackingArea) ? ([CTGradient unifiedPressedGradient]) : ([CTGradient unifiedNormalGradient])) gradientWithAlphaComponent:alphaRecording] fillRect:NSInsetRect(correctedSnapBackRect,-([snapBackButton lineWidth]/2.0),-([snapBackButton lineWidth]/2.0)) angle:90];
+
+			NSGradient *gradient = nil;
+			if (mouseDown && mouseInsideTrackingArea) {
+				gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.60 alpha:alphaRecording]
+														 endingColor:[NSColor colorWithCalibratedWhite:0.75 alpha:alphaRecording]];
+			}
+			else {
+				gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.75 alpha:alphaRecording]
+														 endingColor:[NSColor colorWithCalibratedWhite:0.90 alpha:alphaRecording]];
+			}
+			CGFloat insetAmount = -([snapBackButton lineWidth]/2.0);
+			[gradient drawInRect:NSInsetRect(correctedSnapBackRect, insetAmount, insetAmount) angle:90];
+			[gradient release];
+
 			/*
 		// Highlight if inside or down
 			 if (mouseInsideTrackingArea)
@@ -565,8 +583,8 @@
 		{
 			[NSGraphicsContext saveGraphicsState];
 			NSSetFocusRingStyle(NSFocusRingOnly);
-			[[NSBezierPath bezierPathWithSRCRoundRectInRect:cellFrame //NSInsetRect(cellFrame,2,2)
-													 radius:NSHeight(cellFrame)/2.0] fill];
+			radius = NSHeight(cellFrame) / 2.0;
+			[[NSBezierPath bezierPathWithRoundedRect:cellFrame xRadius:radius yRadius:radius] fill];
 			[NSGraphicsContext restoreGraphicsState];
 		}
 		
@@ -1058,15 +1076,7 @@
 	NSColor *gradientStartColor = [[[NSColor alternateSelectedControlColor] shadowWithLevel: 0.2] colorWithAlphaComponent: 0.9];
 	NSColor *gradientEndColor = [[[NSColor alternateSelectedControlColor] highlightWithLevel: 0.2] colorWithAlphaComponent: 0.9];
 	
-	CTGradient *newGradient = [CTGradient gradientWithBeginningColor:gradientStartColor endingColor:gradientEndColor];
-	
-	if (recordingGradient != newGradient)
-	{
-		[recordingGradient release];
-		recordingGradient = [newGradient retain];
-	}
-	
-	[[self controlView] display];
+	recordingGradient = [[NSGradient alloc] initWithStartingColor:gradientStartColor endingColor:gradientEndColor];
 }
 
 - (void)_setJustChanged {

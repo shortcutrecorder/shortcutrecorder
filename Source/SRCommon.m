@@ -174,83 +174,6 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int 
 	
 	CFMutableStringRef resultString;
 	
-#if !__LP64__
-	UCKeyboardLayout    *uchrData;
-	void                *KCHRData;
-	SInt32              keyLayoutKind;
-    KeyboardLayoutRef currentLayout;
-    UInt32          keyTranslateState;
-		
-    err = KLGetCurrentKeyboardLayout( &currentLayout );
-    if(err != noErr)
-		return FailWithNaiveString;
-	
-    err = KLGetKeyboardLayoutProperty( currentLayout, kKLKind, (const void **)&keyLayoutKind );
-    if (err != noErr)
-		return FailWithNaiveString;
-	
-    if (keyLayoutKind == kKLKCHRKind) {
-		PUDNSLog(@"KCHR kind key layout");
-		err = KLGetKeyboardLayoutProperty( currentLayout, kKLKCHRData, (const void **)&KCHRData );
-		if (err != noErr)
-			return FailWithNaiveString;
-    } else {
-		PUDNSLog(@"uchr kind key layout");
-		err = KLGetKeyboardLayoutProperty( currentLayout, kKLuchrData, (const void **)&uchrData );
-		if (err !=  noErr)
-			return FailWithNaiveString;
-    }
-	
-    if (keyLayoutKind == kKLKCHRKind) {
-		UInt16 keyc = (UInt16)keyCode;
-		keyc |= (1 << 7);
-		if (cocoaFlags & NSAlternateKeyMask) keyc |= optionKey;
-		if (cocoaFlags & NSShiftKeyMask) keyc |= shiftKey;
-		
-		UInt32 charCode = KeyTranslate( KCHRData, keyc, &keyTranslateState );
-
-		charCode = CFSwapInt32BigToHost(charCode);
-		PUDNSLog(@"char code: %X", charCode);
-		UniChar chars[2];
-		CFIndex length = 0;
-
-		// Thanks to Peter Hosey for this particular piece of henious villainy.
-		union {
-			UInt32 uint32;
-			struct { // No, we don't need to conditionally compile these with different orders since we swap the int.
-				char reserved1;
-				char char1;
-				char reserved2;
-				char char2;
-			} charStruct;
-		} charactersUnion;
-		charactersUnion.uint32 = charCode;
-		if(charactersUnion.charStruct.char1) {
-			chars[0] = charactersUnion.charStruct.char1;
-			chars[1] = charactersUnion.charStruct.char2;
-			length = 2;
-		} else {
-			chars[0] = charactersUnion.charStruct.char2;
-			length = 1;
-		}
-		CFStringRef temp = CFStringCreateWithCharacters(kCFAllocatorDefault, chars, length); 
-		resultString = CFStringCreateMutableCopy(kCFAllocatorDefault, 0,temp);
-		if(temp)
-			CFRelease(temp);
-	} else {
-		EventModifiers modifiers = 0;
-		if (cocoaFlags & NSAlternateKeyMask)	modifiers |= optionKey;
-		if (cocoaFlags & NSShiftKeyMask)		modifiers |= shiftKey;
-		UniCharCount maxStringLength = 4, actualStringLength;
-		UniChar unicodeString[4];
-		err = UCKeyTranslate( uchrData, (UInt16)keyCode, kUCKeyActionDisplay, modifiers, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, maxStringLength, &actualStringLength, unicodeString );
-		CFStringRef temp = CFStringCreateWithCharacters(kCFAllocatorDefault, unicodeString, 1);
-		resultString = CFStringCreateMutableCopy(kCFAllocatorDefault, 0,temp);
-		if (temp)
-			CFRelease(temp);
-	}   
-	
-#else
 	TISInputSourceRef tisSource = TISCopyCurrentKeyboardInputSource();
     if(!tisSource)
 		return FailWithNaiveString;
@@ -274,7 +197,6 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(signed short keyCode, unsigned int 
 	resultString = CFStringCreateMutableCopy(kCFAllocatorDefault, 0,temp);
 	if (temp)
 		CFRelease(temp);
-#endif
 	CFStringCapitalize(resultString, locale);
 	
 	PUDNSLog(@"character: -%@-", (NSString *)resultString);
@@ -295,50 +217,6 @@ double SRAnimationEaseInOut(double t) {
 
 #pragma mark -
 #pragma mark additions
-
-@implementation NSBezierPath( SRAdditions )
-
-//---------------------------------------------------------- 
-// + bezierPathWithSRCRoundRectInRect:radius:
-//---------------------------------------------------------- 
-+ (NSBezierPath*)bezierPathWithSRCRoundRectInRect:(NSRect)aRect radius:(float)radius
-{
-	NSBezierPath* path = [self bezierPath];
-	radius = MIN(radius, 0.5f * MIN(NSWidth(aRect), NSHeight(aRect)));
-	NSRect rect = NSInsetRect(aRect, radius, radius);
-	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMinY(rect)) radius:radius startAngle:180.0 endAngle:270.0];
-	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(rect), NSMinY(rect)) radius:radius startAngle:270.0 endAngle:360.0];
-	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMaxX(rect), NSMaxY(rect)) radius:radius startAngle:  0.0 endAngle: 90.0];
-	[path appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rect), NSMaxY(rect)) radius:radius startAngle: 90.0 endAngle:180.0];
-	[path closePath];
-	return path;
-}
-
-@end
-
-@implementation NSError( SRAdditions )
-
-- (NSString *)localizedDescription
-{
-	return [[self userInfo] objectForKey:@"NSLocalizedDescription"];
-}
-
-- (NSString *)localizedFailureReason
-{
-	return [[self userInfo] objectForKey:@"NSLocalizedFailureReasonErrorKey"];
-}
-
-- (NSString *)localizedRecoverySuggestion
-{
-	return [[self userInfo] objectForKey:@"NSLocalizedRecoverySuggestionErrorKey"];	
-}
-
-- (NSArray *)localizedRecoveryOptions
-{
-	return [[self userInfo] objectForKey:@"NSLocalizedRecoveryOptionsKey"];
-}
-
-@end
 
 @implementation NSAlert( SRAdditions )
 

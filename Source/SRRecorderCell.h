@@ -26,7 +26,7 @@
 
 #define SRAnimationOffsetRect(X,Y)	(SRAnimationAxisIsY ? NSOffsetRect(X,0.0,-NSHeight(Y)) : NSOffsetRect(X,NSWidth(Y),0.0))
 
-@class SRRecorderControl, CTGradient, SRValidator;
+@class SRRecorderControl, SRValidator;
 
 enum SRRecorderStyle {
     SRGradientBorderStyle = 0,
@@ -36,7 +36,7 @@ typedef enum SRRecorderStyle SRRecorderStyle;
 
 @interface SRRecorderCell : NSActionCell <NSCoding>
 {	
-	CTGradient          *recordingGradient;
+	NSGradient          *recordingGradient;
 	NSString            *autosaveName;
 	
 	BOOL                isRecording;
