@@ -95,7 +95,7 @@
 
 #pragma mark -
 
-- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger short)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
+- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
 {
 	if (aRecorder == shortcutRecorder)
 	{
