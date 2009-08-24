@@ -117,6 +117,36 @@ static NSArray              *padKeysArray        = nil;
     return [NSString class];
 }
 
+
+//---------------------------------------------------------- 
+//  init
+//---------------------------------------------------------- 
+- (id)init
+{
+	if((self = [super init]))
+	{
+		[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCache:) name:(NSString*)kTISNotifySelectedKeyboardInputSourceChanged object:nil];
+	}
+	return self;
+}
+
+//---------------------------------------------------------- 
+//  dealloc
+//---------------------------------------------------------- 
+- (void)dealloc
+{
+	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
+}
+
+//---------------------------------------------------------- 
+//  reloadCache
+//---------------------------------------------------------- 
+- (void)reloadCache:(id)sender
+{
+	[SRKeyCodeTransformer regenerateStringToKeyCodeMapping];
+}
+
 //---------------------------------------------------------- 
 //  transformedValue: 
 //---------------------------------------------------------- 
