@@ -93,7 +93,6 @@ static id _sharedHotKeyCenter = nil;
 
 - (void)unregisterHotKey: (PTHotKey*)hotKey
 {
-	OSStatus err;
 	EventHotKeyRef carbonHotKey;
 	NSValue* key;
 
@@ -103,7 +102,7 @@ static id _sharedHotKeyCenter = nil;
 	carbonHotKey = [self _carbonHotKeyForHotKey: hotKey];
 	NSAssert( carbonHotKey != nil, @"" );
 
-	err = UnregisterEventHotKey( carbonHotKey );
+	UnregisterEventHotKey( carbonHotKey );
 	//Watch as we ignore 'err':
 
 	key = [NSValue valueWithPointer: carbonHotKey];

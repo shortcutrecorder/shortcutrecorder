@@ -171,7 +171,7 @@ NSString *SRCharacterForKeyCodeAndCocoaFlags(NSInteger keyCode, NSUInteger cocoa
 	UInt32              deadKeyState;
     OSStatus err = noErr;
     CFLocaleRef locale = CFLocaleCopyCurrent();
-	[(id)locale autorelease]; // Autorelease here so that it gets released no matter what
+	[(id)CFMakeCollectable(locale) autorelease]; // Autorelease here so that it gets released no matter what
 	
 	CFMutableStringRef resultString;
 	
