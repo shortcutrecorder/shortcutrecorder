@@ -69,13 +69,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		936CAE910FFBEC59001934D1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9398377F0DA42965007F53F3;
-			remoteInfo = ShortcutRecorder.framework;
-		};
 		939838AF0DA430D1007F53F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -454,7 +447,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				936CAE920FFBEC59001934D1 /* PBXTargetDependency */,
 				93983B290DA43C60007F53F3 /* PBXTargetDependency */,
 			);
 			name = ShortcutRecorderFramework_Tester;
@@ -596,11 +588,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		936CAE920FFBEC59001934D1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */;
-			targetProxy = 936CAE910FFBEC59001934D1 /* PBXContainerItemProxy */;
-		};
 		939838B00DA430D1007F53F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 939838A40DA4300F007F53F3 /* ShortcutRecorder.ibplugin */;
@@ -837,6 +824,7 @@
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				IBC_PLUGINS = $BUILT_PRODUCTS_DIR/ShortcutRecorder.Framework/Versions/A/Resources/ShortcutRecorder.ibplugin;
 				INFOPLIST_FILE = Demo/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = ShortcutRecorder;
@@ -855,6 +843,7 @@
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
+				IBC_PLUGINS = $BUILT_PRODUCTS_DIR/ShortcutRecorder.Framework/Versions/A/Resources/ShortcutRecorder.ibplugin;
 				INFOPLIST_FILE = Demo/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = ShortcutRecorder;
