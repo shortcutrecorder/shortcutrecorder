@@ -66,6 +66,8 @@
 		93983B2D0DA43C79007F53F3 /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
 		93983B390DA43C82007F53F3 /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */; };
 		93983B8B0DA441BB007F53F3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93983B890DA441BB007F53F3 /* MainMenu.xib */; };
+		A1125B77104C8AF3005C6F7B /* PTKeyCodeTranslator.h in Headers */ = {isa = PBXBuildFile; fileRef = A1125B75104C8AF3005C6F7B /* PTKeyCodeTranslator.h */; };
+		A1125B79104C8B06005C6F7B /* PTKeyCodeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = A1125B76104C8AF3005C6F7B /* PTKeyCodeTranslator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +172,8 @@
 		939839740DA4376D007F53F3 /* SR_Leopard_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SR_Leopard_Prefix.pch; path = Plugin/SR_Leopard_Prefix.pch; sourceTree = "<group>"; };
 		93983B220DA43C4E007F53F3 /* ShortcutRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShortcutRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93983B8A0DA441BB007F53F3 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Demo/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		A1125B75104C8AF3005C6F7B /* PTKeyCodeTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTKeyCodeTranslator.h; sourceTree = "<group>"; };
+		A1125B76104C8AF3005C6F7B /* PTKeyCodeTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTKeyCodeTranslator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +270,8 @@
 				0B8E2A0409CDBADE0085E9ED /* PTHotKey.m */,
 				0B8E2A0509CDBADE0085E9ED /* PTHotKeyCenter.h */,
 				0B8E2A0609CDBADE0085E9ED /* PTHotKeyCenter.m */,
+				A1125B75104C8AF3005C6F7B /* PTKeyCodeTranslator.h */,
+				A1125B76104C8AF3005C6F7B /* PTKeyCodeTranslator.m */,
 				0B8E2A0709CDBADE0085E9ED /* PTKeyCombo.h */,
 				0B8E2A0809CDBADE0085E9ED /* PTKeyCombo.m */,
 			);
@@ -392,6 +398,7 @@
 				9398393E0DA4350B007F53F3 /* SRKeyCodeTransformer.h in Headers */,
 				9398393F0DA4350B007F53F3 /* SRValidator.h in Headers */,
 				939839400DA4350B007F53F3 /* SRCommon.h in Headers */,
+				A1125B77104C8AF3005C6F7B /* PTKeyCodeTranslator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +589,7 @@
 				93983B150DA43C4E007F53F3 /* PTHotKey.m in Sources */,
 				93983B160DA43C4E007F53F3 /* PTHotKeyCenter.m in Sources */,
 				93983B170DA43C4E007F53F3 /* PTKeyCombo.m in Sources */,
+				A1125B79104C8B06005C6F7B /* PTKeyCodeTranslator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,7 +730,6 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ShortcutRecorder;
-				SDKROOT = macosx10.5;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -763,7 +770,6 @@
 		939838A80DA43010007F53F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -787,7 +793,6 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = ShortcutRecorder;
-				SDKROOT = macosx10.5;
 				WRAPPER_EXTENSION = ibplugin;
 				ZERO_LINK = NO;
 			};
@@ -836,10 +841,6 @@
 		93983B210DA43C4E007F53F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -871,6 +872,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = 4.0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
