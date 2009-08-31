@@ -18,17 +18,16 @@
 	return [self initWithIdentifier: nil keyCombo: nil];
 }
 
-
 - (id)initWithIdentifier: (id)identifier keyCombo: (PTKeyCombo*)combo
 {
 	self = [super init];
-	
+
 	if( self )
 	{
 		[self setIdentifier: identifier];
 		[self setKeyCombo: combo];
 	}
-	
+
 	return self;
 }
 
@@ -37,7 +36,7 @@
 	[mIdentifier release];
 	[mName release];
 	[mKeyCombo release];
-	
+
 	[super dealloc];
 }
 
@@ -63,7 +62,7 @@
 - (void)setKeyCombo: (PTKeyCombo*)combo
 {
 	if( combo == nil )
-		combo = [PTKeyCombo clearKeyCombo];	
+		combo = [PTKeyCombo clearKeyCombo];
 
 	[combo retain];
 	[mKeyCombo release];
@@ -106,6 +105,28 @@
 {
 	return mAction;
 }
+
+- (NSUInteger)carbonHotKeyID
+{
+	return mCarbonHotKeyID;
+}
+
+- (void)setCarbonHotKeyID: (NSUInteger)hotKeyID;
+{
+	mCarbonHotKeyID = hotKeyID;
+}
+
+- (EventHotKeyRef)carbonEventHotKeyRef
+{
+	return mCarbonEventHotKeyRef;
+}
+
+- (void)setCarbonEventHotKeyRef: (EventHotKeyRef)hotKeyRef
+{
+	mCarbonEventHotKeyRef = hotKeyRef;
+}
+
+#pragma mark -
 
 - (void)invoke
 {

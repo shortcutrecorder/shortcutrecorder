@@ -30,3 +30,9 @@
 - (BOOL)isValidHotKeyCombo;
 
 @end
+
+
+@interface PTKeyCombo (UserDisplayAdditions)
+- (NSString*)keyCodeString;
+- (NSUInteger)modifierMask;
+@end
