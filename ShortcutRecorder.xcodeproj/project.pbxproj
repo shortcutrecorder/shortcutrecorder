@@ -71,6 +71,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3454F58E109CB92500CC0999 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */;
+			remoteInfo = ShortcutRecorder.framework;
+		};
 		939838AF0DA430D1007F53F3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -436,6 +443,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3454F58F109CB92500CC0999 /* PBXTargetDependency */,
 			);
 			name = ShortcutRecorder.ibplugin;
 			productName = ShortcutRecorder.ibplugin;
@@ -596,6 +604,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3454F58F109CB92500CC0999 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */;
+			targetProxy = 3454F58E109CB92500CC0999 /* PBXContainerItemProxy */;
+		};
 		939838B00DA430D1007F53F3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 939838A40DA4300F007F53F3 /* ShortcutRecorder.ibplugin */;
