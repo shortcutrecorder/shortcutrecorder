@@ -103,28 +103,28 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */;
+			remoteGlobalIDString = 9398377F0DA42965007F53F3;
 			remoteInfo = ShortcutRecorder.framework;
 		};
 		342E01F3109CCD42009AD8CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 342E00EB109CCC36009AD8CA /* ShortcutRecorder.framework for ibplugin embedding */;
+			remoteGlobalIDString = 342E00EB109CCC36009AD8CA;
 			remoteInfo = "ShortcutRecorder.framework for ibplugin embedding";
 		};
 		342E020B109CCE74009AD8CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */;
+			remoteGlobalIDString = 9398377F0DA42965007F53F3;
 			remoteInfo = ShortcutRecorder.framework;
 		};
 		342E020D109CCE76009AD8CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 939838A40DA4300F007F53F3 /* ShortcutRecorder.ibplugin - for embedding in framework */;
+			remoteGlobalIDString = 939838A40DA4300F007F53F3;
 			remoteInfo = "ShortcutRecorder.ibplugin - for embedding in framework";
 		};
 /* End PBXContainerItemProxy section */
@@ -186,9 +186,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* ShortcutRecorder_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortcutRecorder_Prefix.pch; sourceTree = "<group>"; };
 		342E00CF109CCBF5009AD8CA /* ShortcutRecorder.ibplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShortcutRecorder.ibplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		342E00D0109CCBF5009AD8CA /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "Plugin/Info copy.plist"; sourceTree = "<group>"; };
 		342E0104109CCC36009AD8CA /* ShortcutRecorder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShortcutRecorder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		342E0105109CCC36009AD8CA /* SR_LeopardFramework-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SR_LeopardFramework-Info copy.plist"; path = "Framework/SR_LeopardFramework-Info copy.plist"; sourceTree = "<group>"; };
 		74C3670C0A246B4900B69171 /* SRKeyCodeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SRKeyCodeTransformer.h; sourceTree = "<group>"; };
 		74C3670D0A246B4900B69171 /* SRKeyCodeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = SRKeyCodeTransformer.m; sourceTree = "<group>"; };
 		74C3670E0A246B4900B69171 /* SRValidator.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = SRValidator.h; sourceTree = "<group>"; };
@@ -390,8 +388,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				342E00D0109CCBF5009AD8CA /* Info copy.plist */,
-				342E0105109CCC36009AD8CA /* SR_LeopardFramework-Info copy.plist */,
 			);
 			name = ShortcutRecorder;
 			sourceTree = "<group>";
@@ -844,7 +840,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Plugin/SR_Leopard_Prefix.pch;
-				INFOPLIST_FILE = "Plugin/Info copy.plist";
+				INFOPLIST_FILE = "Plugin/SR_PluginStandalone-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -875,7 +871,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Plugin/SR_Leopard_Prefix.pch;
-				INFOPLIST_FILE = "Plugin/Info copy.plist";
+				INFOPLIST_FILE = "Plugin/SR_PluginStandalone-Info.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -904,7 +900,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Framework/SR_LeopardFramework-Info copy.plist";
+				INFOPLIST_FILE = "Framework/SR_LeopardFrameworkEmbed-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -931,7 +927,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Framework/SR_LeopardFramework-Info copy.plist";
+				INFOPLIST_FILE = "Framework/SR_LeopardFrameworkEmbed-Info.plist";
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				OTHER_LDFLAGS = (
 					"-framework",
