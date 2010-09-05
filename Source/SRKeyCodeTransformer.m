@@ -100,7 +100,7 @@ static NSArray              *padKeysArray        = nil;
     stringToKeyCodeDict = [[NSMutableDictionary alloc] init];
     [self regenerateStringToKeyCodeMapping];
 
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCache:) name:(NSString*)kTISNotifySelectedKeyboardInputSourceChanged object:nil];
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(regenerateStringToKeyCodeMapping) name:(NSString*)kTISNotifySelectedKeyboardInputSourceChanged object:nil];
 }
 
 //---------------------------------------------------------- 
@@ -137,14 +137,6 @@ static NSArray              *padKeysArray        = nil;
 - (void)dealloc
 {
 	[super dealloc];
-}
-
-//---------------------------------------------------------- 
-//  reloadCache
-//---------------------------------------------------------- 
-- (void)reloadCache:(id)sender
-{
-	[SRKeyCodeTransformer regenerateStringToKeyCodeMapping];
 }
 
 //---------------------------------------------------------- 
