@@ -136,7 +136,6 @@ static NSArray              *padKeysArray        = nil;
 //---------------------------------------------------------- 
 - (void)dealloc
 {
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
