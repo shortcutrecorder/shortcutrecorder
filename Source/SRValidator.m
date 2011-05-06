@@ -2,7 +2,7 @@
 //  SRValidator.h
 //  ShortcutRecorder
 //
-//  Copyright 2006-2007 Contributors. All rights reserved.
+//  Copyright 2006-2011 Contributors. All rights reserved.
 //
 //  License: BSD
 //
@@ -10,6 +10,7 @@
 //      David Dauer
 //      Jesper
 //      Jamie Kirkpatrick
+//      Andy Kim
 
 #import "SRValidator.h"
 #import "SRCommon.h"
@@ -65,11 +66,16 @@
 	}
 	
 	// then our implementation...
-	NSArray *globalHotKeys;
+	CFArrayRef tempArray = NULL;
+	OSStatus err = noErr;
 	
 	// get global hot keys...
-	if ( CopySymbolicHotKeys((CFArrayRef *)&globalHotKeys ) != noErr )
-		return YES;
+	err = CopySymbolicHotKeys( &tempArray );
+
+	if ( tempArray ) CFRelease(tempArray);
+	if ( err != noErr ) return YES;
+	
+	NSArray *globalHotKeys = [NSArray arrayWithArray:(NSArray *)tempArray];
 	
 	NSEnumerator *globalHotKeysEnumerator = [globalHotKeys objectEnumerator];
 	NSDictionary *globalHotKeyInfoDictionary;
