@@ -72,10 +72,12 @@
 	// get global hot keys...
 	err = CopySymbolicHotKeys( &tempArray );
 
-	if ( tempArray ) CFRelease(tempArray);
 	if ( err != noErr ) return YES;
-	
+
+	// Not copying the array like this results in a leak on according to the Leaks Instrument
 	NSArray *globalHotKeys = [NSArray arrayWithArray:(NSArray *)tempArray];
+
+	if ( tempArray ) CFRelease(tempArray);
 	
 	NSEnumerator *globalHotKeysEnumerator = [globalHotKeys objectEnumerator];
 	NSDictionary *globalHotKeyInfoDictionary;
