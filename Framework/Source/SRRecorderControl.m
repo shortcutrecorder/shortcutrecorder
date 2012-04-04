@@ -117,10 +117,12 @@
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
-    [center removeObserver: self];
-	[center addObserver:self selector:@selector(viewFrameDidChange:) name:NSViewFrameDidChangeNotification object:self];
-	
-	[self resetTrackingRects];
+    if ([self window]) 
+    {
+        [center removeObserver: self];
+        [center addObserver:self selector:@selector(viewFrameDidChange:) name:NSViewFrameDidChangeNotification object:self];
+        [self resetTrackingRects];
+	}
 }
 
 - (void)viewFrameDidChange:(NSNotification *)aNotification
