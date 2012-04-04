@@ -96,13 +96,20 @@
 		74C3670F0A246B4900B69171 /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRValidator.m; path = Framework/Source/SRValidator.m; sourceTree = SOURCE_ROOT; };
 		74C367100A246B4900B69171 /* SRCommon.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SRCommon.h; path = Framework/Source/SRCommon.h; sourceTree = SOURCE_ROOT; };
 		74C367110A246B4900B69171 /* SRCommon.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRCommon.m; path = Framework/Source/SRCommon.m; sourceTree = SOURCE_ROOT; };
+		835F124E152C26A5000CCCBA /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F124F152C26B7000CCCBA /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F1250152C26EA000CCCBA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F1251152C26EE000CCCBA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F1253152C26FE000CCCBA /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F1254152C26FF000CCCBA /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
+		835F1255152C2700000CCCBA /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F1256152C271F000CCCBA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F1257152C272D000CCCBA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F1258152C2748000CCCBA /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F1259152C276F000CCCBA /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		835F125A152C278F000CCCBA /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
+		835F125B152C27A3000CCCBA /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		9371C78E15167D2C008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
-		9371C78F15167D35008B7F36 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/de.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79115167D49008B7F36 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/nl.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79315167D4D008B7F36 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/pl.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79415167D58008B7F36 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/sv.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
-		9371C79515167D67008B7F36 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "/Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/pt-BR.lproj/ShortcutRecorder.strings"; sourceTree = "<absolute>"; };
-		9371C79615167D6E008B7F36 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = /Volumes/Data/rudy/Desktop/shortcutrecorder/Framework/Localizations/sk.lproj/ShortcutRecorder.strings; sourceTree = "<absolute>"; };
 		9371C79815167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C79A15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9371C79C15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -392,6 +399,12 @@
 				sk,
 				"pt-BR",
 				ja,
+				fr,
+				it,
+				nb,
+				el,
+				"zh-Hans",
+				ro,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* ShortcutRecorder */;
 			projectDirPath = "";
@@ -461,15 +474,23 @@
 			isa = PBXVariantGroup;
 			children = (
 				9371C78E15167D2C008B7F36 /* en */,
-				9371C78F15167D35008B7F36 /* de */,
-				9371C79115167D49008B7F36 /* nl */,
-				9371C79315167D4D008B7F36 /* pl */,
-				9371C79415167D58008B7F36 /* sv */,
-				9371C79515167D67008B7F36 /* pt-BR */,
-				9371C79615167D6E008B7F36 /* sk */,
+				835F124E152C26A5000CCCBA /* de */,
+				835F124F152C26B7000CCCBA /* nl */,
+				835F1250152C26EA000CCCBA /* ja */,
+				835F1251152C26EE000CCCBA /* fr */,
+				835F1253152C26FE000CCCBA /* sv */,
+				835F1254152C26FF000CCCBA /* pt-BR */,
+				835F1255152C2700000CCCBA /* sk */,
+				835F1256152C271F000CCCBA /* it */,
+				835F1257152C272D000CCCBA /* nb */,
+				835F1258152C2748000CCCBA /* pl */,
+				835F1259152C276F000CCCBA /* el */,
+				835F125A152C278F000CCCBA /* zh-Hans */,
+				835F125B152C27A3000CCCBA /* ro */,
 			);
 			name = ShortcutRecorder.strings;
-			sourceTree = "<group>";
+			path = Framework/Localizations;
+			sourceTree = SOURCE_ROOT;
 		};
 		9371C79715167DE2008B7F36 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
