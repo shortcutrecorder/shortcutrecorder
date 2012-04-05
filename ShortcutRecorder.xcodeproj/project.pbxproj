@@ -127,6 +127,12 @@
 		835F125B152C27A3000CCCBA /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83B8F8B1152D40E900BF552B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83B8F8B2152D40F000BF552B /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		9365EEFB152D4637002CBDEC /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9365EEFD152D4638002CBDEC /* th */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = th; path = th.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		9365EEFE152D463D002CBDEC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9365EEFF152D463E002CBDEC /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9365EF00152D4645002CBDEC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9365EF01152D4646002CBDEC /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C78E15167D2C008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		9371C79815167DE2008B7F36 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9371C79A15167DE2008B7F36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -394,9 +400,9 @@
 			productReference = 939837800DA42965007F53F3 /* ShortcutRecorder.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		93983B060DA43C4E007F53F3 /* ShortcutRecorderFramework_Tester */ = {
+		93983B060DA43C4E007F53F3 /* ShortcutRecorder_Tester */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 93983B1F0DA43C4E007F53F3 /* Build configuration list for PBXNativeTarget "ShortcutRecorderFramework_Tester" */;
+			buildConfigurationList = 93983B1F0DA43C4E007F53F3 /* Build configuration list for PBXNativeTarget "ShortcutRecorder_Tester" */;
 			buildPhases = (
 				93983B070DA43C4E007F53F3 /* Resources */,
 				93983B0F0DA43C4E007F53F3 /* Sources */,
@@ -408,7 +414,7 @@
 			dependencies = (
 				342E01EF109CCCED009AD8CA /* PBXTargetDependency */,
 			);
-			name = ShortcutRecorderFramework_Tester;
+			name = ShortcutRecorder_Tester;
 			productInstallPath = "$(HOME)/Applications";
 			productName = ShortcutRecorder;
 			productReference = 93983B220DA43C4E007F53F3 /* ShortcutRecorder.app */;
@@ -454,7 +460,7 @@
 			projectRoot = "";
 			targets = (
 				9398377F0DA42965007F53F3 /* ShortcutRecorder.framework */,
-				93983B060DA43C4E007F53F3 /* ShortcutRecorderFramework_Tester */,
+				93983B060DA43C4E007F53F3 /* ShortcutRecorder_Tester */,
 			);
 		};
 /* End PBXProject section */
@@ -550,6 +556,8 @@
 				93F48AEB152C9CE300E271F9 /* el */,
 				93F48AEC152C9CE400E271F9 /* zh-Hans */,
 				93F48AED152C9CE500E271F9 /* ro */,
+				9365EF00152D4645002CBDEC /* ko */,
+				9365EF01152D4646002CBDEC /* th */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -571,6 +579,8 @@
 				93F48AF2152C9CF100E271F9 /* el */,
 				93F48AF3152C9CF200E271F9 /* zh-Hans */,
 				93F48AF4152C9CF300E271F9 /* ro */,
+				9365EEFE152D463D002CBDEC /* ko */,
+				9365EEFF152D463E002CBDEC /* th */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -592,6 +602,8 @@
 				93F48AF9152C9D0100E271F9 /* el */,
 				93F48AFA152C9D0200E271F9 /* zh-Hans */,
 				93F48AFB152C9D0300E271F9 /* ro */,
+				9365EEFB152D4637002CBDEC /* ko */,
+				9365EEFD152D4638002CBDEC /* th */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -723,7 +735,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		93983B1F0DA43C4E007F53F3 /* Build configuration list for PBXNativeTarget "ShortcutRecorderFramework_Tester" */ = {
+		93983B1F0DA43C4E007F53F3 /* Build configuration list for PBXNativeTarget "ShortcutRecorder_Tester" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				93983B200DA43C4E007F53F3 /* Debug */,
