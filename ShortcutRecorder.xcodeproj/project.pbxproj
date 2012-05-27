@@ -129,6 +129,10 @@
 		83B8F8B2152D40F000BF552B /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83F7CC9A1571D1E9007C224F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83F7CC9B1571D202007C224F /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
+		83F7CCA01571D28D007C224F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		83F7CCA21571D28E007C224F /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		83F7CCA31571D297007C224F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		83F7CCA41571D298007C224F /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		9365EEFB152D4637002CBDEC /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9365EEFD152D4638002CBDEC /* th */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = th; path = th.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9365EEFE152D463D002CBDEC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -564,6 +568,8 @@
 				93F48AED152C9CE500E271F9 /* ro */,
 				9365EF00152D4645002CBDEC /* ko */,
 				9365EF01152D4646002CBDEC /* th */,
+				83F7CCA31571D297007C224F /* es */,
+				83F7CCA41571D298007C224F /* es-MX */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -587,6 +593,8 @@
 				93F48AF4152C9CF300E271F9 /* ro */,
 				9365EEFE152D463D002CBDEC /* ko */,
 				9365EEFF152D463E002CBDEC /* th */,
+				83F7CCA01571D28D007C224F /* es */,
+				83F7CCA21571D28E007C224F /* es-MX */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
