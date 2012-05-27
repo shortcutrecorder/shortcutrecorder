@@ -127,6 +127,8 @@
 		835F125B152C27A3000CCCBA /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83B8F8B1152D40E900BF552B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83B8F8B2152D40F000BF552B /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		83F7CC9A1571D1E9007C224F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
+		83F7CC9B1571D202007C224F /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-MX"; path = "es-MX.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
 		9365EEFB152D4637002CBDEC /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9365EEFD152D4638002CBDEC /* th */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = th; path = th.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9365EEFE152D463D002CBDEC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -454,6 +456,8 @@
 				ro,
 				ko,
 				th,
+				es,
+				"es-MX",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* ShortcutRecorder */;
 			projectDirPath = "";
@@ -534,6 +538,8 @@
 				835F125B152C27A3000CCCBA /* ro */,
 				83B8F8B1152D40E900BF552B /* ko */,
 				83B8F8B2152D40F000BF552B /* th */,
+				83F7CC9A1571D1E9007C224F /* es */,
+				83F7CC9B1571D202007C224F /* es-MX */,
 			);
 			name = ShortcutRecorder.strings;
 			path = Framework/Localizations;
