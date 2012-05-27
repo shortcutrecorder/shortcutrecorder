@@ -112,6 +112,8 @@
 		74C3670F0A246B4900B69171 /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRValidator.m; path = Framework/Source/SRValidator.m; sourceTree = SOURCE_ROOT; };
 		74C367100A246B4900B69171 /* SRCommon.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SRCommon.h; path = Framework/Source/SRCommon.h; sourceTree = SOURCE_ROOT; };
 		74C367110A246B4900B69171 /* SRCommon.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SRCommon.m; path = Framework/Source/SRCommon.m; sourceTree = SOURCE_ROOT; };
+		834754EE1571D469005BCB89 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		834754F01571D46A005BCB89 /* es-MX */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "es-MX"; path = "es-MX.lproj/MainMenu.xib"; sourceTree = "<group>"; };
 		835F124E152C26A5000CCCBA /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		835F124F152C26B7000CCCBA /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		835F1250152C26EA000CCCBA /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
@@ -618,6 +620,8 @@
 				93F48AFB152C9D0300E271F9 /* ro */,
 				9365EEFB152D4637002CBDEC /* ko */,
 				9365EEFD152D4638002CBDEC /* th */,
+				834754EE1571D469005BCB89 /* es */,
+				834754F01571D46A005BCB89 /* es-MX */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
