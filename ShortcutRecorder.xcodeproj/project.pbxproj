@@ -115,7 +115,6 @@
 		83354C0F15F5C79C001DF8AA /* zh-Hant */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
 		83354C1515F5C807001DF8AA /* da */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83354C1715F5C830001DF8AA /* pt-PT */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/ShortcutRecorder.strings"; sourceTree = "<group>"; };
-		83354C1815F5C855001DF8AA /* lv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = lv; path = lv.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83354C1915F5C870001DF8AA /* pt */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		83354C1A15F5C889001DF8AA /* ca */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/ShortcutRecorder.strings; sourceTree = "<group>"; };
 		834754EE1571D469005BCB89 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -568,7 +567,6 @@
 				83354C0F15F5C79C001DF8AA /* zh-Hant */,
 				83354C1515F5C807001DF8AA /* da */,
 				83354C1715F5C830001DF8AA /* pt-PT */,
-				83354C1815F5C855001DF8AA /* lv */,
 				83354C1915F5C870001DF8AA /* pt */,
 				83354C1A15F5C889001DF8AA /* ca */,
 			);
