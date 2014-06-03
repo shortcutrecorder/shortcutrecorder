@@ -75,7 +75,7 @@
 	if ( err != noErr ) return YES;
 
 	// Not copying the array like this results in a leak on according to the Leaks Instrument
-	NSArray *globalHotKeys = [NSArray arrayWithArray:(NSArray *)tempArray];
+	NSArray *globalHotKeys = [NSArray arrayWithArray:(__bridge NSArray *)tempArray];
 
 	if ( tempArray ) CFRelease(tempArray);
 	
