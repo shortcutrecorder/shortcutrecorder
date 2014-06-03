@@ -697,6 +697,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = ShortcutRecorder;
+				SDKROOT = macosx10.8;
 				ZERO_LINK = NO;
 			};
 			name = Localization;
@@ -740,6 +741,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = ShortcutRecorder;
+				SDKROOT = macosx10.8;
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -768,6 +770,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = ShortcutRecorder;
+				SDKROOT = macosx10.8;
 				ZERO_LINK = NO;
 			};
 			name = Release;
